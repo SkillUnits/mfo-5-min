@@ -31,7 +31,7 @@
         ttq.page();
         }(window, document, 'ttq');
     </script>
-        <!-- TikTok Pixel Code End -->
+    <!-- TikTok Pixel Code End -->
 </head>
 <body>
     <!-- HEADER :: START-->
@@ -650,6 +650,15 @@
         let isFpTimeouted = false;
         async function goUrl(obj, mfKey) {
             keitaroLead();
+
+            ttq.track('AddToCart', {
+                content_name: mfKey
+            });
+
+            ttq.track('ClickButton', {
+                content_name: mfKey
+            });
+
             return false
             // if (!isFpTimeouted) {
             //     let waitTime = 0;
