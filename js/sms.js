@@ -14,9 +14,10 @@ class OperMessage {
 }
 
 class Answer {
-    constructor(text, action) {
+    constructor(text, action, conversionStatus) {
         this.text = text;
         this.action = action;
+        this.conversionStatus = conversionStatus
     }
 }
 
@@ -33,9 +34,9 @@ class Action {
 const haveCreditsFlow = new Flow([
     new OperMessage("Выберите компании в которых у вас были займы:", null, new Action(Action.showCurrentOffers, null)),
     new OperMessage("Какую сумму вы хотели бы получить?", [
-        new Answer("До 100.000 тнг", null),
-        new Answer("100.000 - 300.000 тнг", null),
-        new Answer("Больше 300.000 тнг 💰", null),
+        new Answer("До 100.000 тнг", null, "amount_select_100"),
+        new Answer("100.000 - 300.000 тнг", null, "amount_select_100-300"),
+        new Answer("Больше 300.000 тнг 💰", null, "amount_select_300+"),
     ], null),
     new OperMessage("Отлично! Я провожу автоматическую верификацию", null, null),
     new OperMessage("Еще пару секунд...", null, null),
@@ -44,14 +45,14 @@ const haveCreditsFlow = new Flow([
 
 const noCreditsFlow = new Flow([
     new OperMessage("Какую сумму вы хотели бы получить?", [
-        new Answer("До 100.000 тнг", null),
-        new Answer("100.000 - 300.000 тнг", null),
-        new Answer("Больше 300.000 тнг 💰", null),
+        new Answer("До 100.000 тнг", null, "amount_select_100"),
+        new Answer("100.000 - 300.000 тнг", null, "amount_select_100-300"),
+        new Answer("Больше 300.000 тнг 💰", null, "amount_select_300+"),
     ], null),
     new OperMessage("На какой срок вам нужен займ?", [
-        new Answer("До 10 дней", null),
-        new Answer("10 - 30 дней", null),
-        new Answer("1 - 3 месяца 🗓️", null),
+        new Answer("До 10 дней", null, "term_select_10"),
+        new Answer("10 - 30 дней", null, "term_select_10-30"),
+        new Answer("1 - 3 месяца 🗓️", null, "term_select_13m"),
     ], null),
     new OperMessage("Отлично! Я провожу автоматическую верификацию", null, null),
     new OperMessage("Еще пару секунд...", null, null),
@@ -63,8 +64,8 @@ const mainFlow = new Flow([
     new OperMessage("Добрый день 👋", null, null),
     new OperMessage("Меня зовут Аружан, я найду для вас лучшее предложение по микрозайму.", null, null),
     new OperMessage("У вас были когда либо микрозаймы?", [
-        new Answer("Да", new Action(Action.actionChangeFlow, haveCreditsFlow)),
-        new Answer("Нет", new Action(Action.actionChangeFlow, noCreditsFlow)),
+        new Answer("Да", new Action(Action.actionChangeFlow, haveCreditsFlow), "have_credits"),
+        new Answer("Нет", new Action(Action.actionChangeFlow, noCreditsFlow), "no_credits"),
     ], null),
 ]);
 
@@ -81,8 +82,6 @@ function selectOffer(element, offer) {
         removeItemOnce(userOffers, offer);
         element.className = "offer-select";
     }
-
-    console.log(userOffers)
 }
 
 function removeItemOnce(arr, value) {
@@ -95,6 +94,7 @@ function removeItemOnce(arr, value) {
   
 
 function doneSelectOffer(element) {
+    keitaroConvertion("my_offers_select");
     document.getElementById('select-offer-button').style.display = 'none';
     proceedToNextMessage();
 }
@@ -188,6 +188,7 @@ function displayAnswerButtons(answers) {
 
 function handleUserResponse(response) {
     displayMessage(response.text, "user");
+    keitaroConvertion(response.conversionStatus);
 
     if (response.action) {
         handleAction(response.action)
