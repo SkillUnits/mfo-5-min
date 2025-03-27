@@ -20,6 +20,7 @@
   <script src="js/jquery.mask.js"></script>
   <script src="js/slick.min.js"></script>
   <script src="js/tracker.js"></script>
+  <script src="js/sms.js"></script>
 
   <style>
     body {
@@ -243,7 +244,6 @@
         }(window, document, 'ttq');
     </script>
     <!-- TikTok Pixel Code End -->
-
 </head>
 <body style="background-color: #fff;">
   <div class="main" id="main" style="background-color: #fff; padding: 0px;">
@@ -261,12 +261,87 @@
 
     <div class="message-container" id="chat-container">
 
-        <!-- Offers  -->
-        <div class="third_page step-page" id="offers-result" style="margin-top: 20px; display: none;">
+      <!-- Offers Select -->
+      <div class="third_page step-page" id="offers-select" style="margin-top: 20px; margin-bottom: 20px; display: none;">
         <div class="container">
             <div class="inner_wrapper inner-cont">
                 <div class="offers_wrapper">
-                    <div class="offer offer-block-new" data-adv-key="zaimerkz" style="background-color: #e5e5e5">
+                    <div class="offer-select" data-adv-key="zaimerkz" onclick="return selectOffer(this, 'zaimerkz');">
+                        <div class="offer-key" style="display: none;">zaimerkz</div>
+                        <a class="body-card-logo dynamic-link" target="_blank">
+                            <img src="/images/banks/zaimer.png" class="offer-logo" alt="робот онлайн займов" style="height: 40px; width: auto;">
+                        </a>
+                    </div>
+                    
+                    <div class="offer-select" data-adv-key="moneymankz" onclick="return selectOffer(this, 'moneymankz');">
+                        <div class="offer-key" style="display: none;">moneymankz</div>
+                        <a class="body-card-logo" target="_blank">
+                            <img src="/images/banks/moneymankz.svg" class="offer-logo" alt="кредит на карту онлайн" style="height: 70px; width: auto;">
+                        </a>
+                    </div>
+                    
+                    <div class="offer-select" data-adv-key="onecreditkz" onclick="return selectOffer(this, 'onecreditkz');">
+                        <div class="offer-key" style="display: none;">onecreditkz</div>
+                        <a class="body-card-logo">
+                            <img src="/images/banks/onecreditkz.svg" class="offer-logo" alt="кредит на карту онлайн">
+                        </a>
+                    </div>
+                    
+                    <div class="offer-select" data-adv-key="credity360kz" onclick="return selectOffer(this, 'credity360kz');">
+                        <div class="offer-key" style="display: none;">credity360kz</div>
+                        <a class="body-card-logo">
+                            <img src="/images/banks/credity360.svg" class="offer-logo" alt="выиграй путевку на мальдивы" style="height: 50px; width: auto;">
+                        </a>
+                    </div>
+                    
+                    <div class="offer-select" data-adv-key="creditbarkz" onclick="return selectOffer(this, 'creditbarkz');">
+                        <div class="offer-key" style="display: none;">creditbarkz</div>
+                        <a class="body-card-logo">
+                            <img src="/images/banks/creditbarkz.svg" class="offer-logo" alt="кредит на карту онлайн">
+                        </a>
+                    </div>
+                    
+                    <div class="offer-select" data-adv-key="creditpluskz" onclick="return selectOffer(this, 'creditpluskz');">
+                        <div class="offer-key" style="display: none;">creditpluskz</div>
+                        <a class="body-card-logo">
+                            <img src="/images/banks/creditpluskz.svg" class="offer-logo" alt="кредит на карту онлайн">
+                        </a>
+                    </div>
+
+                    <div class="general_button_wrapper" style="width: 100%;" id="select-offer-button">
+                      <div class="button">
+                          <a class="btn-main" target="_blank" onclick="return doneSelectOffer(this);">
+                            Готово
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      </div>
+      <!-- Offers Select end  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Offers  -->
+      <div class="third_page step-page" id="offers-result" style="margin-top: 20px; display: none;">
+        <div class="container">
+            <div class="inner_wrapper inner-cont">
+                <div class="offers_wrapper">
+                    <div class="offer offer-block-new" id="offer-zaimerkz" data-adv-key="zaimerkz" style="background-color: #e5e5e5">
                         <div class="offer-key" style="display: none;">zaimerkz</div>
                         <div class="label red">Лучшее для тебя</div>
 
@@ -292,7 +367,7 @@
                         </div>
                     </div>
                     
-                    <div class="offer not-small-padding offer-block-new" data-adv-key="moneymankz" style="background-color: #e5e5e5">
+                    <div class="offer not-small-padding offer-block-new" id="offer-moneymankz" data-adv-key="moneymankz" style="background-color: #e5e5e5">
                         <div class="offer-key" style="display: none;">moneymankz</div>
                         <div class="label red">Лучшее для тебя</div>
                         <a class="body-card-logo" href="{offer}&offer_id=12" onclick="return goUrl(this, 'moneymankz');" target="_blank">
@@ -317,7 +392,7 @@
                         </div>
                     </div>
                     
-                    <div class="offer offer-block-new" data-adv-key="onecreditkz" style="background-color: #e5e5e5">
+                    <div class="offer offer-block-new" id="offer-onecreditkz" data-adv-key="onecreditkz" style="background-color: #e5e5e5">
                         <div class="offer-key" style="display: none;">onecreditkz</div>
                         <div class="label yellow">ТОП компания</div>
                         <a class="body-card-logo" href="{offer}&offer_id=13" onclick="return goUrl(this, 'onecreditkz');" target="_blank">
@@ -342,7 +417,7 @@
                         </div>
                     </div>
                     
-                    <div class="offer offer-block-new" data-adv-key="credity360kz" style="background-color: #e5e5e5">
+                    <div class="offer offer-block-new" id="offer-credity360kz" data-adv-key="credity360kz" style="background-color: #e5e5e5">
                         <div class="offer-key" style="display: none;">credity360kz</div>
                         <a class="body-card-logo" href="{offer}&offer_id=14" onclick="return goUrl(this, 'credity360kz');" target="_blank">
                             <img src="/images/banks/credity360.svg" class="offer-logo" alt="выиграй путевку на мальдивы">
@@ -366,7 +441,7 @@
                         </div>
                     </div>
                     
-                    <div class="offer offer-block-new" data-adv-key="creditbarkz" style="background-color: #e5e5e5">
+                    <div class="offer offer-block-new" id="offer-creditbarkz" data-adv-key="creditbarkz" style="background-color: #e5e5e5">
                         <div class="offer-key" style="display: none;">creditbarkz</div>
                         <a class="body-card-logo" href="{offer}&offer_id=15" onclick="return goUrl(this, 'creditbarkz');" target="_blank">
                             <img src="/images/banks/creditbarkz.svg" class="offer-logo" alt="кредит на карту онлайн">
@@ -390,7 +465,7 @@
                         </div>
                     </div>
                     
-                    <div class="offer offer-block-new" data-adv-key="creditpluskz" style="background-color: #e5e5e5">
+                    <div class="offer offer-block-new" id="offer-creditpluskz" data-adv-key="creditpluskz" style="background-color: #e5e5e5">
                         <div class="offer-key" style="display: none;">creditpluskz</div>
                         <a class="body-card-logo" href="{offer}&offer_id=16" onclick="return goUrl(this, 'creditpluskz');" target="_blank">
                             <img src="/images/banks/creditpluskz.svg" class="offer-logo" alt="кредит на карту онлайн">
@@ -417,13 +492,19 @@
             </div>
         </div>
       </div>
-      <!-- Offers end  -->
+      <!-- Offers end  -->      
+
+
+
     </div>
 
     <div id="answer-buttons" class="answer-buttons"></div>
   </div>
 
   <script>
+    // Start the chat with the first operator message
+    setTimeout(showOperatorMessage, 500);
+
     async function goUrl(obj, mfKey) {
       keitaroLead();
 
@@ -437,196 +518,7 @@
 
       return false;
     }
-
-    function scrollToBottom() {
-      const bottomElement = document.getElementById('chat-container');
-      bottomElement.scrollIntoView({ behavior: 'smooth' });
-
-      window.scroll({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'  // Optional: Adds smooth scrolling
-      });
-    }
-
-    // Define the messages array
-
-    class Answer {
-      constructor(text, isPositive) {
-        this.text = text;
-        this.isPositive = isPositive;
-      }
-    }
-
-    const messages = [
-      {
-        operator_message: "Добрый день 👋",
-        user_answer: null
-      },
-      {
-        operator_message: "Меня зовут Аружан, я найду для вас лучшее предложение по микрозайму.",
-        user_answer: null
-      },
-      {
-        operator_message: "У вас есть активные микрозаймы?",
-        user_answer: [new Answer("Да", true), new Answer("Нет", true)]
-      },
-      {
-        operator_message: "Какую сумму вы хотели бы получить?",
-        user_answer: [
-          new Answer("До 100.000 тнг", true),
-          new Answer("100.000 - 300.000 тнг", true),
-          new Answer("Больше 300.000 тнг 💰", true),
-        ]
-      },
-      {
-        operator_message: "На какой срок вам нужен займ?",
-        user_answer: [
-          new Answer("До 10 дней", true),
-          new Answer("10 - 30 дней", true),
-          new Answer("1 - 3 месяца 🗓️", true),
-        ]
-      },
-      {
-        operator_message: "Отлично! Я провожу автоматическую верификацию",
-        user_answer: null // Empty user answer array
-      },
-      {
-        operator_message: "Еще пару секунд...",
-        user_answer: null // Empty user answer array
-      },
-      {
-        operator_message: "🎉🎁 Вам одобрен запрашиваемый кредит. Его можно получить в этих организациях:",
-        user_answer: null // Empty user answer array
-      }      
-    ];
-
-    let currentMessageIndex = 0;
-
-    function displayMessage(content, sender) {
-      if (sender == "call") {
-        const messageDiv = document.createElement("div");
-        messageDiv.classList.add("message", sender);
-
-        var link = document.createElement('a');
-        link.href = 'tel:' + content;
-        link.textContent = content;
-
-        messageDiv.appendChild(link);
-
-        var offersDiv = document.getElementById('offers-result');
-        document.getElementById("chat-container").insertBefore(messageDiv, offersDiv)
-
-        document.getElementById("chat-container").scrollTop = document.getElementById("chat-container").scrollHeight;
-        scrollToBottom()
-        return
-      }
-
-      const messageDiv = document.createElement("div");
-      messageDiv.classList.add("message", sender);
-      messageDiv.textContent = content;
-      var offersDiv = document.getElementById('offers-result');
-      document.getElementById("chat-container").insertBefore(messageDiv, offersDiv)
-
-      document.getElementById("chat-container").scrollTop = document.getElementById("chat-container").scrollHeight;
-      scrollToBottom();
-    }
-
-    function showOperatorMessage() {
-      const message = messages[currentMessageIndex];
-      if (message.operator_message) {
-        const operatorMessageDiv = document.createElement("div");
-        operatorMessageDiv.classList.add("message", "operator", "typing");
-
-        const circleDiv = document.createElement("div");
-        circleDiv.classList.add("circle");
-
-        const circleDiv1 = document.createElement("div");
-        circleDiv1.classList.add("circle");
-
-        const circleDiv2 = document.createElement("div");
-        circleDiv2.classList.add("circle");
-
-        operatorMessageDiv.appendChild(circleDiv)
-        operatorMessageDiv.appendChild(circleDiv1)
-        operatorMessageDiv.appendChild(circleDiv2)
-
-        var offersDiv = document.getElementById('offers-result');
-        document.getElementById("chat-container").insertBefore(operatorMessageDiv, offersDiv)        
-
-        // Disable buttons while the operator is typing
-        disableAnswerButtons();
-        scrollToBottom();
-
-        setTimeout(() => {
-          operatorMessageDiv.textContent = message.operator_message;
-          if (message.user_answer && message.user_answer.length > 0) {
-            displayAnswerButtons(message.user_answer);
-            operatorMessageDiv.classList.remove("typing")
-            scrollToBottom();
-          } else {
-            operatorMessageDiv.classList.remove("typing");
-            proceedToNextMessage();
-            scrollToBottom();
-          }
-        }, Math.random() * 1000 + 1000); // random delay between 1500ms and 2500ms
-      }
-    }
-
-    function displayAnswerButtons(answers) {
-      const answerButtonsContainer = document.getElementById("answer-buttons");
-
-      answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.classList.add("answer-button");
-        button.textContent = answer.text;
-        button.onclick = () => handleUserResponse(answer);
-        answerButtonsContainer.appendChild(button);
-      });
-
-      // Enable buttons after operator's message is shown
-      enableAnswerButtons();
-    }
-
-    function handleUserResponse(response) {
-      displayMessage(response.text, "user");
-
-      if (!response.isPositive) {
-        displayMessage("Desafortunadamente, usted no califica para la Liquidación de Deudas.", "error");
-        return
-      }
-
-      proceedToNextMessage();
-
-      const answerButtonsContainer = document.getElementById("answer-buttons");
-      while (answerButtonsContainer.firstChild) {
-        answerButtonsContainer.removeChild(answerButtonsContainer.firstChild);
-      }
-    }
-
-    function proceedToNextMessage() {
-      currentMessageIndex++;
-      if (currentMessageIndex < messages.length) {
-        setTimeout(showOperatorMessage, 500);
-      } else {
-        document.getElementById("offers-result").style.display = "block";
-        scrollToBottom();
-      }
-    }
-
-    function disableAnswerButtons() {
-      const answerButtonsContainer = document.getElementById("answer-buttons");
-      answerButtonsContainer.classList.add('locked'); // Lock the entire button container
-    }
-
-    function enableAnswerButtons() {
-      const answerButtonsContainer = document.getElementById("answer-buttons");
-      answerButtonsContainer.classList.remove('locked'); // Unlock the entire button container
-    }
-
-    // Start the chat with the first operator message
-    setTimeout(showOperatorMessage, 500);
   </script>
-  
   <script src="js/generate.js" source="credity.kz" async=""></script>
 
   <!-- Keitaro tracking script -->

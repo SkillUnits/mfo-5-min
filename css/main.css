@@ -606,6 +606,23 @@ ul li {
     position: relative;
     margin-bottom: 15px;
 }
+.main .third_page .offers_wrapper .offer-select-selected{
+    width: calc(50% - 5px);
+    background-color: #7389FF;
+    border-radius: 16px;
+    padding: 0 10px 0 10px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.main .third_page .offers_wrapper .offer-select{
+    width: calc(50% - 5px);
+    background-color: #e5e5e5;
+    border-radius: 16px;
+    padding: 0 10px 0 10px;
+    position: relative;
+    margin-bottom: 15px;
+}
 .main .third_page .offers_wrapper .body-card-logo {
     height: 72px;
     display: flex;
