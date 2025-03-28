@@ -75,10 +75,3 @@
             }
         }
     }
-
-    window.addEventListener('load', function() {
-        if (frameLinks[frameIndex]) {
-            addFrame();
-        }
-    });
-
