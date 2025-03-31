@@ -14,13 +14,14 @@
   <link rel="stylesheet" media="all" href="css/g.css">
   <link rel="stylesheet" media="all" href="css/ion.rangeSlider.css">
   <link rel="stylesheet" type="text/css" href="css/slick.min.css">
+  <link rel="stylesheet" href="./css/wheel-index.css">
 
   <script src="js/jquery-3.5.1.min.js"></script>
   <script src="js/ion.rangeSlider.js"></script>
   <script src="js/jquery.mask.js"></script>
   <script src="js/slick.min.js"></script>
   <script src="js/tracker.js"></script>
-  <script src="js/sms.js"></script>
+  <script src="./js/wheel-index.js" type="module"></script>
 
   <style>
     body {
@@ -87,7 +88,7 @@
       background-color: #22bb22;
       border-radius: 50%;   /* Makes the shape circular */
       animation: pulse 2s infinite ease-in-out;  /* Apply pulsing animation */
-      margin-left: 8px;
+      margin-right: 8px;
     }
 
     #chat-container {
@@ -230,7 +231,6 @@
     }
 
   </style>
-
       <!-- TikTok Pixel Code Start -->
       <script>
         !function (w, d, t) {
@@ -249,74 +249,24 @@
   <div class="main" id="main" style="background-color: #fff; padding: 0px;">
     
     <div id="header">
-      <span class="text-red">Внимание:</span>
-      <div class="details">Спец предложение для заемщиков с активными микрокредитами. Возьми займ для погашения текущего кредита, до 500,000 тнг под 0.01% <div class="text-red"> (успей до 20.04.2025)</div>
-      </div>
-      <div class="operator-container">
-          <div class="operator-name" style="display: flex; align-items: center;">
-            <img src="images/operator.png" alt="Аружан" style="width: 20px; height: 20px; margin-right: 5px; border-radius: 50%;">
-            Аружан в сети
-            <div class="online"></div>
-          </div>  
+        <span class="text-red">Внимание:</span>
+        <div class="details">Весенняя акция на кредиты 💐. Крути колесо, найди лучшее предложение. Займы за 5 минут, до 500,000 тнг под 0.01% <div class="text-red"> (успей до 20.04.2025)</div>
         </div>
     </div>
+  </div>
+
+    
+    <div class="gui-wrapper">
+      <p>Click-drag (or touch-flick) to spin the wheel.</p>
+      <div>
+        <button>Spin</button>
+        <p><label>Theme:</label><select></select></p>
+      </div>
+    </div>
+  
+    <div class="wheel-wrapper"></div>
 
     <div class="message-container" id="chat-container">
-
-      <!-- Offers Select -->
-      <div class="third_page step-page" id="offers-select" style="margin-top: 20px; margin-bottom: 20px; display: none;">
-        <div class="container">
-            <div class="inner_wrapper inner-cont">
-                <div class="offers_wrapper">
-                    <div class="offer-select" data-adv-key="zaimerkz" onclick="return selectOffer(this, 'zaimerkz');">
-                        <div class="offer-key" style="display: none;">zaimerkz</div>
-                        <a class="body-card-logo dynamic-link" target="_blank">
-                            <img src="/images/banks/zaimer.png" class="offer-logo" alt="робот онлайн займов" style="height: 40px; width: auto;">
-                        </a>
-                    </div>
-                    
-                    <div class="offer-select" data-adv-key="moneymankz" onclick="return selectOffer(this, 'moneymankz');">
-                        <div class="offer-key" style="display: none;">moneymankz</div>
-                        <a class="body-card-logo" target="_blank">
-                            <img src="/images/banks/moneymankz.svg" class="offer-logo" alt="кредит на карту онлайн" style="height: 70px; width: auto;">
-                        </a>
-                    </div>
-                    
-                    <div class="offer-select" data-adv-key="onecreditkz" onclick="return selectOffer(this, 'onecreditkz');">
-                        <div class="offer-key" style="display: none;">onecreditkz</div>
-                        <a class="body-card-logo">
-                            <img src="/images/banks/onecreditkz.svg" class="offer-logo" alt="кредит на карту онлайн">
-                        </a>
-                    </div>
-                    
-                    <div class="offer-select" data-adv-key="credity360kz" onclick="return selectOffer(this, 'credity360kz');">
-                        <div class="offer-key" style="display: none;">credity360kz</div>
-                        <a class="body-card-logo">
-                            <img src="/images/banks/credity360.png" class="offer-logo" alt="выиграй путевку на мальдивы" style="height: 50px; width: auto;">
-                        </a>
-                    </div>
-                    
-                    <div class="offer-select" data-adv-key="creditpluskz" onclick="return selectOffer(this, 'creditpluskz');">
-                        <div class="offer-key" style="display: none;">creditpluskz</div>
-                        <a class="body-card-logo">
-                            <img src="/images/banks/creditpluskz.svg" class="offer-logo" alt="кредит на карту онлайн">
-                        </a>
-                    </div>
-
-                    <div class="general_button_wrapper" style="width: 100%;" id="select-offer-button">
-                      <div class="button">
-                          <a class="btn-main" target="_blank" onclick="return doneSelectOffer(this);">
-                            Готово
-                          </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-      </div>
-      <!-- Offers Select end  -->
-
-
 
 
       <!-- Offers  -->
@@ -527,8 +477,7 @@
             </div>
         </div>
       </div>
-      <!-- Offers end  -->      
-
+      <!-- Offers end  -->
 
 
     </div>
@@ -537,9 +486,6 @@
   </div>
 
   <script>
-    // Start the chat with the first operator message
-    setTimeout(showOperatorMessage, 500);
-
     async function goUrl(obj, mfKey) {
       keitaroLead();
 
