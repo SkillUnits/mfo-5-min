@@ -13,5 +13,5 @@ function keitaroLead() {
 }
 
 function keitaroConvertion(status) {
-    KTracking.reportConversion(0, status, {tid})
+    // KTracking.reportConversion(0, status, {tid})
 }
