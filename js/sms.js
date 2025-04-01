@@ -39,7 +39,6 @@ const haveCreditsFlow = new Flow([
         new Answer("Больше 300.000 тнг 💰", null, "amount_select_300+"),
     ], null),
     new OperMessage("Отлично! Я провожу автоматическую верификацию", null, null),
-    new OperMessage("Еще пару секунд...", null, null),
     new OperMessage("🎉🎁💰 Вам предварительно одобрен запрашиваемый кредит. Его можно получить в этих организациях:", null, new Action(Action.showOffers, null))
 ]);
 
@@ -49,13 +48,7 @@ const noCreditsFlow = new Flow([
         new Answer("100.000 - 300.000 тнг", null, "amount_select_100-300"),
         new Answer("Больше 300.000 тнг 💰", null, "amount_select_300+"),
     ], null),
-    new OperMessage("На какой срок вам нужен займ?", [
-        new Answer("До 10 дней", null, "term_select_10"),
-        new Answer("10 - 30 дней", null, "term_select_10-30"),
-        new Answer("1 - 3 месяца 🗓️", null, "term_select_13m"),
-    ], null),
     new OperMessage("Отлично! Я провожу автоматическую верификацию", null, null),
-    new OperMessage("Еще пару секунд...", null, null),
     new OperMessage("🎉🎁💰 Вам предварительно одобрен запрашиваемый кредит. Его можно получить в этих организациях:", null, new Action(Action.showOffers, null))
 ]);
 
