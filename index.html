@@ -1091,8 +1091,8 @@
                 window.KTracking = {
                     collectNonUniqueClicks: false,
                     multiDomain: false,
-                    R_PATH: "https://ads.credity.kz/" + camp_id,
-                    P_PATH: "https://ads.credity.kz/1e9341e/postback",
+                    R_PATH: "https://cdn.credity.kz/" + camp_id,
+                    P_PATH: "https://cdn.credity.kz/1e9341e/postback",
                     listeners: [],
                     reportConversion: function () {
                         this.queued = arguments;
@@ -1109,13 +1109,13 @@
                 var a = document.createElement("script");
                 a.type = "application/javascript";
                 a.async = true;
-                a.src = "https://ads.credity.kz/js/k.min.js";
+                a.src = "https://cdn.credity.kz/js/k.min.js";
                 var s = document.getElementsByTagName("script")[0];
                 s.parentNode.insertBefore(a, s);
             })();
         </script>
         <noscript
-            ><img height="0" width="0" alt="" src="https://ads.credity.kz"
+            ><img height="0" width="0" alt="" src="https://cdn.credity.kz"
         /></noscript>
         <!-- END Keitaro tracking script -->
     </body>
