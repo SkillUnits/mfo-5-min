@@ -32,12 +32,11 @@ document.addEventListener("DOMContentLoaded", function() {
     // Получаем список оферов из URL
     const urlParams = new URLSearchParams(window.location.search);
     var offersIds = urlParams.get("offers_ids");  // например, "zaimerkz,moneymankz,onecreditkz"
-    
     if (!offersIds) {
-        offersIds="13,21,22,20,10,12,14,16";
+        offersIds="13 21 22 20 10 12 14 16";
     }
 
-    const offerIdsArray = offersIds.split(',');
+    const offerIdsArray = offersIds.split(' ');
     const offersWrapper = document.querySelector("#offers_list");
     var idx = 0;
     offerIdsArray.forEach(offerId => {
