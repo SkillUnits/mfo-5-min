@@ -21,6 +21,7 @@
   <script src="js/slick.min.js"></script>
   <script src="js/tracker.js"></script>
   <script src="js/student.js"></script>
+  <script src="js/offers.js"></script>
 
   <style>
     body {
@@ -268,35 +269,35 @@
         <div class="container">
             <div class="inner_wrapper inner-cont">
                 <div class="offers_wrapper">
-                    <div class="offer-select" data-adv-key="zaimerkz" onclick="return selectOffer(this, 'zaimerkz');">
+                    <div class="offer-select" data-adv-key="zaimerkz" onclick="return selectOffer(this, 10);">
                         <div class="offer-key" style="display: none;">zaimerkz</div>
                         <a class="body-card-logo dynamic-link" target="_blank">
                             <img src="/images/banks/zaimer.png" class="offer-logo" alt="робот онлайн займов" style="height: 40px; width: auto;">
                         </a>
                     </div>
                     
-                    <div class="offer-select" data-adv-key="moneymankz" onclick="return selectOffer(this, 'moneymankz');">
+                    <div class="offer-select" data-adv-key="moneymankz" onclick="return selectOffer(this, 12);">
                         <div class="offer-key" style="display: none;">moneymankz</div>
                         <a class="body-card-logo" target="_blank">
                             <img src="/images/banks/moneymankz.svg" class="offer-logo" alt="кредит на карту онлайн" style="height: 70px; width: auto;">
                         </a>
                     </div>
                     
-                    <div class="offer-select" data-adv-key="onecreditkz" onclick="return selectOffer(this, 'onecreditkz');">
+                    <div class="offer-select" data-adv-key="onecreditkz" onclick="return selectOffer(this, 13);">
                         <div class="offer-key" style="display: none;">onecreditkz</div>
                         <a class="body-card-logo">
                             <img src="/images/banks/onecreditkz.svg" class="offer-logo" alt="кредит на карту онлайн">
                         </a>
                     </div>
                     
-                    <div class="offer-select" data-adv-key="credity360kz" onclick="return selectOffer(this, 'credity360kz');">
+                    <div class="offer-select" data-adv-key="credity360kz" onclick="return selectOffer(this, 14);">
                         <div class="offer-key" style="display: none;">credity360kz</div>
                         <a class="body-card-logo">
                             <img src="/images/banks/credity360.png" class="offer-logo" alt="выиграй путевку на мальдивы" style="height: 50px; width: auto;">
                         </a>
                     </div>
                     
-                    <div class="offer-select" data-adv-key="creditpluskz" onclick="return selectOffer(this, 'creditpluskz');">
+                    <div class="offer-select" data-adv-key="creditpluskz" onclick="return selectOffer(this, 16);">
                         <div class="offer-key" style="display: none;">creditpluskz</div>
                         <a class="body-card-logo">
                             <img src="/images/banks/creditpluskz.svg" class="offer-logo" alt="кредит на карту онлайн">
@@ -335,205 +336,9 @@
       <div class="third_page step-page" id="offers-result" style="margin-top: 20px; display: none;">
         <div class="container">
             <div class="inner_wrapper inner-cont">
-                <div class="offers_wrapper">
+              <div class="offers_wrapper" id="offers_list">
 
-                  <div class="offer offer-block-new" id="offer-finlite" data-adv-key="finlite" style="background-color: #b8d8be">
-                    <div class="offer-key" style="display: none;">finlite</div>
-                    <div class="label red">Лучшее для тебя</div>
-                    <a class="body-card-logo" href="{offer}&offer_id=21" onclick="return goUrl(this, 'finlitekz');" target="_blank">
-                        <img src="/images/banks/finlitekz.svg" class="offer-logo" alt="кредит на карту онлайн">
-                    </a>
-                    <ul class="offer-info">
-                        <li>
-                            <span class="text">Срок до:</span>
-                            <span class="bold">до 60 дн</span>
-                        </li>
-                        <li>
-                            <span class="text">Ставка:</span>
-                            <span class="bold colored">0.01%</span>
-                        </li>
-                    </ul>
-                    <div class="general_button_wrapper">
-                        <div class="button">
-                            <a class="btn-main" target="_blank" href="{offer}&offer_id=21" onclick="return goUrl(this, 'finlitekz');">
-                                Получить 💰
-                            </a>
-                        </div>
-                    </div>
-                  </div>
-
-                  <div class="offer offer-block-new" id="offer-credity360kz" data-adv-key="credity360kz" style="background-color: #e5e5e5">
-                    <div class="offer-key" style="display: none;">credity360kz</div>
-                    <div class="label red">Лучшее для тебя</div>
-                    <a class="body-card-logo" href="{offer}&offer_id=14" onclick="return goUrl(this, 'credity360kz');" target="_blank">
-                        <img src="/images/banks/credity360.png" class="offer-logo" alt="выиграй путевку на мальдивы">
-                    </a>
-                    <ul class="offer-info">
-                        <li>
-                            <span class="text">Срок до:</span>
-                            <span class="bold">до 30 дн</span>
-                        </li>
-                        <li>
-                            <span class="text">Ставка:</span>
-                            <span class="bold colored">0.01%</span>
-                        </li>
-                    </ul>
-                    <div class="general_button_wrapper">
-                        <div class="button">
-                            <a class="btn-main" target="_blank" href="{offer}&offer_id=14" onclick="return goUrl(this, 'credity360kz');">
-                                Получить 💰
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                  <div class="offer offer-block-new" id="offer-cashradarkz" data-adv-key="cashradarkz" style="background-color: #e5e5e5">
-                    <div class="offer-key" style="display: none;">cashradar</div>
-                    <div class="label yellow">Быстрая выдача</div>
-                    <a class="body-card-logo" href="{offer}&offer_id=22" onclick="return goUrl(this, 'cashradarkz');" target="_blank">
-                        <img src="/images/banks/cashradarkz.svg" class="offer-logo" alt="кредит на карту онлайн">
-                    </a>
-                    <ul class="offer-info">
-                        <li>
-                            <span class="text">Срок до:</span>
-                            <span class="bold">до 60 дн</span>
-                        </li>
-                        <li>
-                            <span class="text">Ставка:</span>
-                            <span class="bold colored">0.1 %</span>
-                        </li>
-                    </ul>
-                    <div class="general_button_wrapper">
-                        <div class="button">
-                            <a class="btn-main" target="_blank" href="{offer}&offer_id=22" onclick="return goUrl(this, 'cashradarkz');">
-                                Получить 🤑
-                            </a>
-                        </div>
-                    </div>
-                  </div>                  
-
-                    <div class="offer offer-block-new" id="offer-zaimerkz" data-adv-key="zaimerkz" style="background-color: #e5e5e5">
-                        <div class="offer-key" style="display: none;">zaimerkz</div>
-                        <a class="body-card-logo dynamic-link" href="{offer}&offer_id=10" onclick="return goUrl(this, 'zaimerkz');" target="_blank">
-                            <img src="/images/banks/zaimer.png" class="offer-logo" alt="робот онлайн займов">
-                        </a>
-                        <ul class="offer-info">
-                            <li>
-                                <span class="text">Срок до:</span>
-                                <span class="bold">до 12 мес</span>
-                            </li>
-                            <li>
-                                <span class="text">Ставка:</span>
-                                <span class="bold colored">0.1 %</span>
-                            </li>
-                        </ul>
-                        <div class="general_button_wrapper">
-                            <div class="button">
-                                <a class="btn-main" target="_blank" href="{offer}&offer_id=10" onclick="return goUrl(this, 'zaimerkz');">
-                                    Получить 💵
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="offer not-small-padding offer-block-new" id="offer-moneymankz" data-adv-key="moneymankz" style="background-color: #e5e5e5">
-                        <div class="offer-key" style="display: none;">moneymankz</div>
-                        <a class="body-card-logo" href="{offer}&offer_id=12" onclick="return goUrl(this, 'moneymankz');" target="_blank">
-                            <img src="/images/banks/moneymankz.svg" class="offer-logo" alt="кредит на карту онлайн">
-                        </a>
-                        <ul class="offer-info">
-                            <li>
-                                <span class="text">Срок до:</span>
-                                <span class="bold">до 30 дн</span>
-                            </li>
-                            <li>
-                                <span class="text">Ставка:</span>
-                                <span class="bold colored">0.01%</span>
-                            </li>
-                        </ul>
-                        <div class="general_button_wrapper">
-                            <div class="button">
-                                <a class="btn-main" target="_blank" href="{offer}&offer_id=12" onclick="return goUrl(this, 'moneymankz');">
-                                    Получить 💳
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="offer offer-block-new" id="offer-onecreditkz" data-adv-key="onecreditkz" style="background-color: #e5e5e5">
-                        <div class="offer-key" style="display: none;">onecreditkz</div>
-                        <a class="body-card-logo" href="{offer}&offer_id=13" onclick="return goUrl(this, 'onecreditkz');" target="_blank">
-                            <img src="/images/banks/onecreditkz.svg" class="offer-logo" alt="кредит на карту онлайн">
-                        </a>
-                        <ul class="offer-info">
-                            <li>
-                                <span class="text">Срок до:</span>
-                                <span class="bold">до 25 дн</span>
-                            </li>
-                            <li>
-                                <span class="text">Ставка:</span>
-                                <span class="bold colored">0.01%</span>
-                            </li>
-                        </ul>
-                        <div class="general_button_wrapper">
-                            <div class="button">
-                                <a class="btn-main" target="_blank" href="{offer}&offer_id=13" onclick="return goUrl(this, 'onecreditkz');">
-                                    Получить 💸
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="offer offer-block-new" id="offer-creditpluskz" data-adv-key="creditpluskz" style="background-color: #e5e5e5">
-                        <div class="offer-key" style="display: none;">creditpluskz</div>
-                        <a class="body-card-logo" href="{offer}&offer_id=16" onclick="return goUrl(this, 'creditpluskz');" target="_blank">
-                            <img src="/images/banks/creditpluskz.svg" class="offer-logo" alt="кредит на карту онлайн">
-                        </a>
-                        <ul class="offer-info">
-                            <li>
-                                <span class="text">Срок до:</span>
-                                <span class="bold">до 30 дн</span>
-                            </li>
-                            <li>
-                                <span class="text">Ставка:</span>
-                                <span class="bold colored">0.01%</span>
-                            </li>
-                        </ul>
-                        <div class="general_button_wrapper">
-                            <div class="button">
-                                <a class="btn-main" target="_blank" href="{offer}&offer_id=16" onclick="return goUrl(this, 'creditpluskz');">
-                                    Получить 💵
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="offer offer-block-new" id="offer-acreditkz" data-adv-key="acreditkz" style="background-color: #e5e5e5">
-                      <div class="offer-key" style="display: none;">acreditkz</div>
-                      <div class="label yellow">Быстрая выдача</div>
-
-                      <a class="body-card-logo" href="{offer}&offer_id=20" onclick="return goUrl(this, 'acreditkz');" target="_blank">
-                          <img src="/images/banks/acreditkz.png" class="offer-logo" alt="кредит на карту онлайн">
-                      </a>
-                      <ul class="offer-info">
-                          <li>
-                              <span class="text">Срок до:</span>
-                              <span class="bold">до 30 дн</span>
-                          </li>
-                          <li>
-                              <span class="text">Ставка:</span>
-                              <span class="bold colored">0.1%</span>
-                          </li>
-                      </ul>
-                      <div class="general_button_wrapper">
-                          <div class="button">
-                              <a class="btn-main" target="_blank" href="{offer}&offer_id=20" onclick="return goUrl(this, 'acreditkz');">
-                                  Получить 🚀
-                              </a>
-                          </div>
-                      </div>
-                    </div>
-                </div>
+              </div>
             </div>
         </div>
       </div>
@@ -568,13 +373,13 @@
 
   <!-- Keitaro tracking script -->
   <script type='application/javascript'>
-      const camp_id = getQueryParam("camp_id", false)
-      if (!window.KTracking)
-          {
-              window.KTracking={collectNonUniqueClicks: false, multiDomain: false, R_PATH: 'https://ads.credity.kz/' + camp_id, P_PATH:'https://ads.credity.kz/1e9341e/postback', listeners: [], reportConversion: function(){this.queued = arguments;}, getSubId: function(fn) {this.listeners.push(fn);}, ready: function(fn) {this.listeners.push(fn);} };}(function(){var a=document.createElement('script');a.type='application/javascript';a.async=true;a.src='https://ads.credity.kz/js/k.min.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(a,s)}
-          )();
+    const camp_id = getQueryParam("camp_id", false)
+    if (!window.KTracking)
+        {
+            window.KTracking={collectNonUniqueClicks: false, multiDomain: false, R_PATH: 'https://cdn.credity.kz/' + camp_id, P_PATH:'https://cdn.credity.kz/1e9341e/postback', listeners: [], reportConversion: function(){this.queued = arguments;}, getSubId: function(fn) {this.listeners.push(fn);}, ready: function(fn) {this.listeners.push(fn);} };}(function(){var a=document.createElement('script');a.type='application/javascript';a.async=true;a.src='https://cdn.credity.kz/js/k.min.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(a,s)}
+        )();
   </script>
-  <noscript><img height='0' width='0' alt='' src='https://ads.credity.kz'/></noscript>
+  <noscript><img height='0' width='0' alt='' src='https://cdn.credity.kz'/></noscript>
   <!-- END Keitaro tracking script -->
 
 </body>

@@ -235,7 +235,10 @@ function showOffersSelect(show) {
 
 function showOffersResult(show) {
     for (const element of userOffers) {
-        document.getElementById("offer-" + element).style.display = "none";
+        const view = document.getElementById("offer-" + element);
+        if (view) {
+            view.style.display = "none";
+        }
     }
 
     document.getElementById("offers-result").style.display = show ? "block" : "none";

@@ -59,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             const offerElement = document.createElement("div");
+            offerElement.setAttribute("id", `offer-${offerId}`);
             offerElement.classList.add("offer", "offer-block-new");
             offerElement.style.backgroundColor = color;
             offerElement.innerHTML = `
@@ -86,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             `;
             offersWrapper.appendChild(offerElement);
+            console.log(offerElement);
             idx++;
         }
     });
