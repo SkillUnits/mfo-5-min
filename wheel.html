@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta id="light-theme" name="theme-color" media="(prefers-color-scheme: light)" content="#f1eae4">
+    <meta id="dark-theme" name="theme-color" media="(prefers-color-scheme: dark)" content="#322e2f">
+    <title>Spin the Wheel | Missing Dice</title>
+    <meta name="description"
+        content="Can't decide? Create a spinning wheel of names, decisions, or tasks, and leave it up to random chance. Let the wheel decide.">
+    <style>
+        @charset "UTF-8";
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            text-decoration-skip-ink: auto;
+            position: relative
+        }
+
+        div {
+            border-color: currentColor
+        }
+
+        blockquote,
+        body,
+        button,
+        dd,
+        dl,
+        figcaption,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        input,
+        li,
+        ol,
+        p,
+        ul {
+            margin: 0
+        }
+
+        html {
+            max-width: 100vw;
+            overflow-x: hidden;
+            overflow-y: scroll
+        }
+
+        body {
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            text-rendering: optimizeSpeed;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+            border: 0;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            * {
+                animation-duration: 0s !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0s !important
+            }
+        }
+
+        .inset,
+        :after,
+        :before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0
+        }
+
+        :after,
+        :before {
+            pointer-events: none
+        }
+
+        .page,
+        body,
+        html,
+        main {
+            width: 100vw;
+            max-width: 100vw;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden
+        }
+
+        .wrapper,
+        article,
+        footer,
+        main header,
+        section {
+            width: 100%;
+            max-width: 100vw;
+            margin: 0;
+            padding: .75rem 2px
+        }
+
+        .wrapper>*+*,
+        article>*+*,
+        footer>*+*,
+        main header>*+*,
+        section>*+* {
+            margin-top: 1rem
+        }
+
+        @media (min-width:320px) {
+
+            .wrapper,
+            article,
+            footer,
+            main header,
+            section {
+                padding: 1.77rem .56rem
+            }
+        }
+
+        #tada-text,
+        .action-button,
+        .block,
+        .checkbox,
+        .label-input,
+        blockquote,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        li,
+        p,
+        table {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            max-width: 35rem;
+            position: relative
+        }
+
+        .inline {
+            display: initial;
+            margin: initial;
+            width: auto
+        }
+
+        #tada-text,
+        .center,
+        .checkbox .check,
+        .dropdown>label .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        main {
+            padding-bottom: 2.36rem;
+            min-height: 100vh
+        }
+
+        footer {
+            padding-top: 2.36rem
+        }
+
+        ol,
+        ul {
+            padding: 0
+        }
+
+        .inset {
+            max-width: none
+        }
+
+        :root {
+            --t: #111;
+            --g: #fff;
+            --b: #F8F5F2;
+            --ba: #F1EAE4;
+            --s: #E2D7CA;
+            --bo: #dcb;
+            --bs: #ba9;
+            --u: #acd;
+            --uh: #9bd;
+            --ut: #001;
+            --ub: transparent;
+            --ib: #acd;
+            --it: #000;
+            --i: #fff;
+            --a: #e98;
+            --ah: #e87;
+            --at: #100;
+            --ab: transparent;
+            --as: #d54;
+            --f: #31a
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root {
+                --t: #edd;
+                --g: #433D3E;
+                --b: #2D2A2A;
+                --ba: #322E2F;
+                --s: #231D1E;
+                --bo: #181616;
+                --bs: #000;
+                --ib: #d82;
+                --it: #fff;
+                --i: #3D4340;
+                --u: #d82;
+                --uh: #c82;
+                --ut: #000;
+                --f: #fc4
+            }
+        }
+
+        body {
+            background: #f1eae4
+        }
+
+        @media (prefers-color-scheme:dark) {
+            body {
+                background: #322e2f
+            }
+        }
+
+        * #dark:checked~* {
+            --t: #edd;
+            --t: #edd;
+            --g: #615656;
+            --b: #413A3A;
+            --ba: #473F3F;
+            --s: #322929;
+            --bo: #221C1C;
+            --bs: #000;
+            --ib: #d82;
+            --it: #fff;
+            --i: #3D4340;
+            --u: #d82;
+            --uh: #c82;
+            --ut: #000;
+            --f: #EECC53
+        }
+
+        @media (prefers-color-scheme:dark) {
+            * #dark:checked~* {
+                --t: #111;
+                --g: #fff;
+                --b: #F8F5F2;
+                --ba: #F1EAE4;
+                --s: #E2D7CA;
+                --bo: #dcb;
+                --bs: #ba9;
+                --ib: #acd;
+                --it: #000;
+                --i: #fff;
+                --u: #acd;
+                --uh: #9bd;
+                --ut: #001;
+                --f: #31a
+            }
+        }
+
+        #vegas:checked~* {
+            --t: #FFF;
+            --g: #064;
+            --b: #004a3b;
+            --ba: #054;
+            --s: #043;
+            --bo: #eff;
+            --u: #912;
+            --uh: #812;
+            --ut: #fff;
+            --ib: #912;
+            --i: #043;
+            --it: #fff;
+            --a: #ea2;
+            --ah: #e90;
+            --at: #000;
+            --as: #b61;
+            --f: #fff
+        }
+
+        #party:checked~* {
+            --t: #000;
+            --g: #FDC3C9;
+            --b: #FDA7AF;
+            --ba: #FC9CA5;
+            --s: #FA8995;
+            --bo: #f78;
+            --bs: #e46;
+            --u: #63E3D4;
+            --uh: #4dc;
+            --ut: #000;
+            --ub: transparent;
+            --i: #FED7DB;
+            --it: #000;
+            --ib: #63E3D4;
+            --a: #bdceeb;
+            --ah: #A1B9E2;
+            --at: #000;
+            --as: #638BCF;
+            --f: #018
+        }
+
+        #dd:checked~* {
+            --t: #DDCCBB;
+            --g: #561D25;
+            --b: #2E0F13;
+            --ba: #270D10;
+            --s: #17080A;
+            --bo: #4D1920;
+            --sh: #000;
+            --u: #ba6;
+            --uh: #a94;
+            --ut: #000;
+            --i: #ddc;
+            --it: #000;
+            --ib: #ba6;
+            --a: #D0C7B3;
+            --ah: #C9BEA6;
+            --at: #600;
+            --as: #65593E;
+            --f: #eba
+        }
+
+        #hc:checked~* {
+            --t: #fff;
+            --g: #000;
+            --b: #000;
+            --ba: #000;
+            --s: #000;
+            --bo: #fff;
+            --bs: #000;
+            --u: #000;
+            --uh: #000;
+            --ub: #ff0;
+            --ut: #fff;
+            --ib: #ff0;
+            --it: #fff;
+            --i: #000;
+            --a: #000;
+            --ah: #000;
+            --ab: #f0f;
+            --at: #f0f;
+            --as: #f0f;
+            --f: #0f0
+        }
+
+        #hc:checked~* ::selection {
+            color: #000;
+            background: #fff
+        }
+
+        #hc:checked~* a {
+            color: #0ff;
+            text-decoration-style: solid
+        }
+
+        #hc:checked~* .header-box {
+            padding-left: 0
+        }
+
+        .color-wrap {
+            min-height: 100vh;
+            width: 100vw;
+            max-width: 100vw;
+            background: var(--b);
+            color: var(--t)
+        }
+
+        .bg-base {
+            background: #f8f5f2;
+            background: var(--b)
+        }
+
+        .bg-base-alt {
+            background: #f1eae4;
+            background: var(--ba)
+        }
+
+        .bg-glare {
+            background: #fff;
+            background: var(--g)
+        }
+
+        .bg-shade {
+            background: #e2d7ca;
+            background: var(--s)
+        }
+
+        .fill-shade {
+            fill: #e2d7ca;
+            fill: var(--s)
+        }
+
+        .fill-base {
+            fill: #f8f5f2;
+            fill: var(--b)
+        }
+
+        .fill-glare {
+            fill: #fff;
+            fill: var(--g)
+        }
+
+        .stroke-text {
+            stroke: #111;
+            stroke: var(--t)
+        }
+
+        :root {
+            line-height: 1.5;
+            font-size: 16px;
+            font-size: clamp(12px, 2vw, 18px)
+        }
+
+        .font-base,
+        :root,
+        code {
+            font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console, monospace
+        }
+
+        .font-text,
+        .text-content li,
+        .text-content p {
+            font-family: BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif
+        }
+
+        h1 {
+            font-size: 2.36rem
+        }
+
+        a {
+            text-decoration: underline dotted;
+            color: #111;
+            color: var(--t)
+        }
+
+        a:hover {
+            text-decoration: underline solid
+        }
+
+        .text-content {
+            padding: 3.15rem .75rem;
+            width: 100%;
+            background: #f8f5f2;
+            background: var(--b)
+        }
+
+        .text-content>* {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .text-content>*+h2,
+        .text-content>*+h3,
+        .text-content>*+h4 {
+            margin-top: 3.15rem
+        }
+
+        .text-content ul {
+            list-style: none;
+            padding: 0
+        }
+
+        code {
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            background: #f1eae4;
+            background: var(--ba);
+            padding: .1em .2em;
+            font-size: .75rem;
+            border-radius: 4px
+        }
+
+        pre code {
+            display: block;
+            white-space: pre;
+            overflow-x: scroll
+        }
+
+        table {
+            display: table;
+            border-collapse: collapse;
+            border-style: hidden
+        }
+
+        th {
+            text-align: left
+        }
+
+        table td,
+        table th {
+            border-top: solid 2px #f1eae4;
+            border-top: solid 2px var(--ba);
+            padding: 4px 8px 4px 0
+        }
+
+        .checkbox .check,
+        .input,
+        input,
+        textarea {
+            border: solid 2px #000;
+            border: solid 2px var(--ib);
+            box-shadow: inset 0 2px #dcb, 0 2px #dcb;
+            box-shadow: inset 0 2px var(--bs), 0 2px var(--bs);
+            background: #fff;
+            background: var(--i);
+            color: #000;
+            color: var(--it);
+            font-size: 1rem;
+            border-radius: 4px;
+            padding: .42rem;
+            margin: 0
+        }
+
+        input[type=checkbox],
+        input[type=radio] {
+            position: absolute;
+            top: .56rem;
+            right: .56rem;
+            opacity: .001
+        }
+
+        .checkbox,
+        .label-input {
+            padding: .56rem;
+            background: #f1eae4;
+            background: var(--ba);
+            border: solid 2px #ba9;
+            border: solid 2px var(--bo);
+            border-radius: 6px
+        }
+
+        .checkbox label,
+        .label-input label {
+            margin-right: auto;
+            cursor: pointer
+        }
+
+        .hint {
+            font-size: .75rem;
+            display: block
+        }
+
+        #dark:focus~* #dark-label,
+        #dd:focus~* #dd-label,
+        #hc:focus~* #hc-label,
+        #light:focus~* #light-label,
+        #party:focus~* #party-label,
+        #vegas:focus~* #vegas-label,
+        .checkbox:focus-within,
+        .focus,
+        .label-input:focus-within,
+        :focus,
+        input[type=checkbox]:focus+label {
+            outline: 2px dashed #31a;
+            outline: 2px dashed var(--f);
+            outline-offset: 2px;
+            z-index: 100
+        }
+
+        .site-head {
+            padding: 4px .56rem 4px 4px;
+            background: var(--head);
+            display: flex;
+            background: #f1eae4;
+            background: var(--ba);
+            border-bottom: dotted 2px #ba9;
+            border-bottom: dotted 2px var(--bo);
+            gap: 1em
+        }
+
+        .site-head a {
+            display: inline-flex;
+            align-items: center;
+            color: var(--t);
+            height: 3.15rem;
+            font-size: 1rem;
+            margin-top: 3px
+        }
+
+        .site-head a svg {
+            height: 3.15rem;
+            margin: 0 4px 0 0
+        }
+
+        .site-head a:first-child {
+            margin-right: auto
+        }
+
+        @media (prefers-color-scheme:dark) {
+            .dark-mode-hide {
+                display: none
+            }
+        }
+
+        .light-mode-hide {
+            display: none
+        }
+
+        @media (prefers-color-scheme:dark) {
+            .light-mode-hide {
+                display: initial
+            }
+        }
+
+        @media (max-width:420px) {
+            .mobile-hide {
+                display: none !important
+            }
+        }
+
+        #tada-text,
+        .center,
+        .checkbox .check,
+        .dropdown>label .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .center-self {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .full {
+            width: 100%
+        }
+
+        .control-box>*+*,
+        .flow>*+*,
+        .hidden-items>*+*,
+        .text-content>*+* {
+            margin-top: 1rem
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column
+        }
+
+        .grow {
+            flex-grow: 1
+        }
+
+        .action-button>*,
+        .pattern>* {
+            position: relative;
+            z-index: 1
+        }
+
+        .action-button:before,
+        .pattern:before {
+            content: "";
+            background-color: #e2d7ca;
+            background-color: var(--set, var(--s));
+            position: absolute;
+            display: block;
+            z-index: 0;
+            max-width: none
+        }
+
+        .action-button:before,
+        .stripes:before {
+            --stripes: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cpattern id='s' width='4' height='4' viewBox='0 0 4 4' patternUnits='userSpaceOnUse' patternTransform='rotate(45)'%3E%3Cpath d='M -1 2 h6 v2 h-6z'/%3E%3C/pattern%3E%3Crect fill='url(%23s)' height='100%25' width='100%25'/%3E%3C/svg%3E");
+            -webkit-mask-image: var(--stripes);
+            mask-image: var(--stripes)
+        }
+
+        .pin-stripes:before {
+            --pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='e' width='4' height='4' viewBox='0 0 8 8' patternUnits='userSpaceOnUse' patternTransform='rotate(45) '%3E%3Cpath fill='%23E1DACB' d='M -1 2 h9 v2 h-9z'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23e)' height='100%25' width='100%25'/%3E%3C/svg%3E");
+            -webkit-mask-image: var(--pin);
+            mask-image: var(--pin)
+        }
+
+        .hide {
+            display: none
+        }
+
+        .h-borders {
+            border-top: solid 1px var(--set, var(--s));
+            border-bottom: solid 1px var(--set, var(--s))
+        }
+
+        .b-border {
+            border-bottom: solid 1px var(--set)
+        }
+
+        .borders {
+            border: solid 2px var(--set)
+        }
+
+        .header-box {
+            display: inline;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+            padding: .2em .4em;
+            background: #fff;
+            background: var(--g)
+        }
+
+        .tool {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            flex-grow: 1
+        }
+
+        .tool>* {
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .result-text {
+            border-radius: 4px;
+            border: dashed 2px var(--s);
+            padding: .75rem;
+            width: 100%;
+            font-size: 1.77rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between
+        }
+
+        .radio>label {
+            padding: .75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 6px;
+            box-sizing: border-box;
+            border: solid 2px transparent;
+            background: #f8f5f2;
+            background: var(--b)
+        }
+
+        .radio>label:hover {
+            background: #fff;
+            background: var(--g);
+            border: solid 2px transparent;
+            border: solid 2px var(--ub)
+        }
+
+        .radio>label:after {
+            content: "";
+            position: relative;
+            display: flex;
+            height: 18px;
+            width: 18px;
+            border-radius: 2rem;
+            margin-left: 1rem;
+            border: solid 2px #111;
+            border: solid 2px var(--t);
+            box-shadow: 0 2px #e2d7ca, inset 0 2px #e2d7ca;
+            box-shadow: 0 2px var(--s), inset 0 2px var(--s)
+        }
+
+        #dark:checked~* #dark-label:after,
+        #dd:checked~* #dd-label:after,
+        #hc:checked~* #hc-label:after,
+        #light:checked~* #light-label:after,
+        #party:checked~* #party-label:after,
+        #vegas:checked~* #vegas-label:after,
+        .radio-checked,
+        .radio>input:checked+label:after {
+            box-shadow: 0 2px #e2d7ca, inset 0 2px #e2d7ca, inset 0 0 0 3px #f8f5f2, inset 0 0 0 1rem #111;
+            box-shadow: 0 2px var(--s), inset 0 2px var(--s), inset 0 0 0 3px var(--b), inset 0 0 0 1rem var(--t)
+        }
+
+        .dropdown {
+            background: #f1eae4;
+            background: var(--ba);
+            border-radius: 6px
+        }
+
+        .dropdown>input[type=checkbox] {
+            position: absolute;
+            left: -9999px;
+            width: 0;
+            height: 0
+        }
+
+        .dropdown>label {
+            padding: .75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            border: solid 2px #ba9;
+            border: solid 2px var(--bo)
+        }
+
+        .dropdown>label:hover {
+            background: #e2d7ca;
+            background: var(--s)
+        }
+
+        .dropdown>label .icon {
+            background: #acd;
+            background: var(--u);
+            box-shadow: 0 2px #e2d7ca;
+            box-shadow: 0 2px var(--s);
+            color: #001;
+            color: var(--ut);
+            height: 1.77rem;
+            width: 1.77rem;
+            border-radius: 2rem;
+            border: solid 2px var(--ui-border);
+            position: relative;
+            margin-left: 1rem
+        }
+
+        .dropdown>label .icon:after {
+            content: "";
+            position: static;
+            width: .56rem;
+            height: .56rem;
+            transform: rotate(135deg);
+            border-top: 2px solid currentColor;
+            border-right: 2px solid currentColor;
+            margin-top: -2px
+        }
+
+        .dropdown>label:active {
+            transform: translateY(1px)
+        }
+
+        .dropdown input[type=checkbox]:checked+label {
+            border-radius: 4px 4px 0 0
+        }
+
+        .dropdown input[type=checkbox]:checked+label .icon:after {
+            transform: rotate(-45deg);
+            margin-top: 3px
+        }
+
+        .dropdown input[type=checkbox]:checked+label .closed-label {
+            display: none
+        }
+
+        .dropdown input[type=checkbox]:checked+label .open-label {
+            display: inline
+        }
+
+        .open-label {
+            display: none
+        }
+
+        .hidden-items {
+            display: none;
+            padding: .56rem;
+            background: #f8f5f2;
+            background: var(--b);
+            border: solid 2px #ba9;
+            border: solid 2px var(--bo);
+            border-top: 0;
+            border-radius: 0 0 4px 4px
+        }
+
+        input[type=checkbox]:checked~.hidden-items {
+            display: block
+        }
+
+        .color-picker .hidden-items {
+            left: 0;
+            right: 0
+        }
+
+        @media (min-width:80em) {
+            .color-picker .hidden-items {
+                position: absolute;
+                z-index: 99
+            }
+        }
+
+        .color-picker,
+        .theme-box {
+            display: none
+        }
+
+        @supports (--v:a) {
+
+            .color-picker,
+            .theme-box {
+                display: block
+            }
+        }
+
+        .control-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center
+        }
+
+        .control-box>* {
+            width: 100%;
+            max-width: 35rem;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .action-button {
+            --set: var(--a);
+            position: relative;
+            background: 0 0;
+            color: #100;
+            color: var(--at);
+            border-radius: 6px;
+            border: 0;
+            box-shadow: inset 0 -8px 0 0 #d54, 0 2px #dcb;
+            box-shadow: inset 0 -8px 0 0 var(--as), 0 2px var(--bs);
+            padding: 1rem 4px calc(1rem + 4px);
+            font-size: 1.77rem;
+            font-weight: 700;
+            overflow: hidden
+        }
+
+        .action-button:before {
+            content: "";
+            position: absolute;
+            top: auto;
+            bottom: 2px;
+            left: 2px;
+            right: 2px;
+            height: 4px;
+            border-radius: 0 0 4px 4px;
+            z-index: 4
+        }
+
+        .action-button:after {
+            content: "";
+            position: absolute;
+            background-color: #e98;
+            background-color: var(--a);
+            border: solid 2px transparent;
+            border: solid 2px var(--ab);
+            border-radius: 6px;
+            bottom: 8px
+        }
+
+        .action-button span {
+            display: block
+        }
+
+        .action-button:hover {
+            box-shadow: inset 0 -7px 0 0 #d54, 0 1px #dcb;
+            box-shadow: inset 0 -7px 0 0 var(--as), 0 1px var(--bs)
+        }
+
+        .action-button:hover:after {
+            background-color: #e87;
+            background-color: var(--ah);
+            transform: translateY(1px)
+        }
+
+        .action-button:hover:before {
+            height: 3px
+        }
+
+        .action-button:hover>span {
+            transform: translateY(1px)
+        }
+
+        .action-button:active {
+            box-shadow: inset 0 -5px 0 0 #d54;
+            box-shadow: inset 0 -5px 0 0 var(--as)
+        }
+
+        .action-button:active:before {
+            height: 1px
+        }
+
+        .action-button:active:after {
+            transform: translateY(3px)
+        }
+
+        .action-button:active>span {
+            transform: translateY(3px)
+        }
+
+        textarea {
+            width: 100%;
+            resize: vertical;
+            min-height: calc(4.2rem * 2);
+            margin-top: .75rem
+        }
+
+        .btn {
+            touch-action: manipulation;
+            color: #001;
+            color: var(--ut);
+            background: #acd;
+            background: var(--u);
+            box-shadow: 0 2px #dcb;
+            box-shadow: 0 2px var(--bs);
+            border: solid 2px transparent;
+            border: solid 2px var(--ub);
+            border-radius: 4px
+        }
+
+        .btn:hover {
+            transform: translateY(1px);
+            box-shadow: 0 1px #dcb;
+            box-shadow: 0 1px var(--bs);
+            background: #9bd;
+            background: var(--uh)
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: none
+        }
+
+        .btn:disabled {
+            background: #e2d7ca;
+            background: var(--s);
+            color: #111;
+            color: var(--t);
+            box-shadow: none
+        }
+
+        .btn:disabled:hover {
+            transform: translateY(0);
+            box-shadow: none
+        }
+
+        .btn:disabled:active {
+            transform: translateY(0);
+            box-shadow: none
+        }
+
+        #results {
+            padding: .75rem 0;
+            pointer-events: none
+        }
+
+        #spinner {
+            position: relative;
+            height: 30rem;
+            max-height: 75vh;
+            width: 100%
+        }
+
+        #spinner-background,
+        #spinner-inner,
+        #ticker {
+            position: absolute;
+            top: 0;
+            bottom: 0
+        }
+
+        #spinner-inner,
+        #ticker {
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0
+        }
+
+        #spinner-background {
+            display: none;
+            overflow: visible;
+            align-items: center
+        }
+
+        #spinner-background svg {
+            display: block;
+            margin: auto
+        }
+
+        @media (min-width:320px) {
+            #spinner-background {
+                display: flex;
+                width: 100%
+            }
+        }
+
+        #spinner-inner {
+            border-radius: 99rem;
+            overflow: hidden
+        }
+
+        .results {
+            padding-bottom: 0
+        }
+
+        .results+div {
+            margin-top: 0
+        }
+
+        #remove-button {
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        #remove-name {
+            white-space: nowrap
+        }
+
+        #tada {
+            margin-top: -2rem
+        }
+
+        :root {
+            --c0: #A1BAB4;
+            --c1: #f28482;
+            --c2: #f6bd60;
+            --c3: #f7ede2;
+            --c0-bg: #84a59d;
+            --c1-bg: #F0B1A8;
+            --c2-bg: #F8CF8B;
+            --c3-bg: #FFF;
+            --wheel: #F4F0EB;
+            --wheel-shade: #E6DCD1;
+            --wheel-border: #000;
+            --pins: #1E1E24;
+            --ticker: #E6DCD1;
+            --ticker-border: #000;
+            --spinner-bg: #F8F5F2
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root {
+                --c0: #688D8D;
+                --c0-bg: #5F8181;
+                --c1: #964A4A;
+                --c1-bg: #894343;
+                --c2: #79627F;
+                --c2-bg: #6E5973;
+                --c3: #698C6D;
+                --c3-bg: #608064;
+                --wheel: #564E4F;
+                --wheel-shade: #555;
+                --wheel-border: #000;
+                --pins: #d82;
+                --ticker: #d82;
+                --ticker-border: #000;
+                --spinner-bg: #433D3E
+            }
+        }
+
+        * #dark:checked~* {
+            --c0: #688D8D;
+            --c0-bg: #5F8181;
+            --c1: #964A4A;
+            --c1-bg: #894343;
+            --c2: #79627F;
+            --c2-bg: #6E5973;
+            --c3: #698C6D;
+            --c3-bg: #608064;
+            --wheel: #564E4F;
+            --wheel-shade: #555;
+            --wheel-border: #000;
+            --pins: #d82;
+            --ticker: #d82;
+            --ticker-border: #000;
+            --spinner-bg: #433D3E
+        }
+
+        @media (prefers-color-scheme:dark) {
+            * #dark:checked~* {
+                --c0: #A1BAB4;
+                --c1: #f28482;
+                --c2: #f6bd60;
+                --c3: #f7ede2;
+                --c0-bg: #84a59d;
+                --c1-bg: #F0B1A8;
+                --c2-bg: #F8CF8B;
+                --c3-bg: #FFF;
+                --wheel: #F4F0EB;
+                --wheel-shade: #E6DCD1;
+                --wheel-border: #000;
+                --pins: #1E1E24;
+                --ticker: #E6DCD1;
+                --ticker-border: #000;
+                --spinner-bg: #F8F5F2
+            }
+        }
+
+        #vegas:checked~* {
+            --c0: #96031A;
+            --c1: #1B1B1E;
+            --c2: #96031A;
+            --c3: #1B1B1E;
+            --c0-bg: #8C0317;
+            --c1-bg: #131315;
+            --c2-bg: #8C0317;
+            --c3-bg: #131315;
+            --wheel: #330F0A;
+            --wheel-shade: #220A07;
+            --wheel-border: #c90;
+            --pins: #c90;
+            --ticker: #c90;
+            --ticker-border: #000;
+            --spinner-bg: #007A62
+        }
+
+        #party:checked~* {
+            --c0: #FFBF81;
+            --c0-bg: #FFAD5C;
+            --c1: #FFA3A5;
+            --c1-bg: #FF8587;
+            --c2: #FF86C8;
+            --c2-bg: #FF5CB6;
+            --c3: #FFDC5E;
+            --c3-bg: #FFD747;
+            --wheel: #FFC8B0;
+            --wheel-shade: #FFB899;
+            --wheel-border: #fff;
+            --ticker: #63E3D4;
+            --ticker-border: #000;
+            --pins: #000;
+            --spinner-bg: #F97683
+        }
+
+        #dd:checked~* {
+            --c0: #2E0F13;
+            --c0-bg: #1F0A0D;
+            --c1: #573C36;
+            --c1-bg: #4B342F;
+            --c2: #570F12;
+            --c2-bg: #460C0F;
+            --c3: #5B4620;
+            --c3-bg: #4B3A1B;
+            --wheel: #362D1C;
+            --wheel-shade: #0D0A07;
+            --wheel-border: #000;
+            --ticker: #E3DAC9;
+            --ticker-border: #000;
+            --pins: #E3DAC9;
+            --spinner-bg: #270d10
+        }
+
+        #hc:checked~* {
+            --c0: #000;
+            --c1: #000;
+            --c2: #000;
+            --c3: #000;
+            --c0-bg: #00f;
+            --c1-bg: #00f;
+            --c2-bg: #00f;
+            --c3-bg: #00f;
+            --wheel-shade: #00f;
+            --wheel: #00f;
+            --spinner-bg: transparent;
+            --ticker: #ff0;
+            --ticker-border: #ff0;
+            --pins: #ff0
+        }
+
+        #hc:checked~* .spinner-sector {
+            stroke: #00f;
+            stroke-width: 2
+        }
+
+        #hc:checked~* text {
+            fill: #fff
+        }
+
+        .tada {
+            padding: 0;
+            background: #fff;
+            background: var(--g);
+            border-top: solid 2px #ba9;
+            border-top: solid 2px var(--bo);
+            text-align: center;
+            font-size: 1.33rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px;
+            align-items: center
+        }
+
+        .tada.highlight #tada-text {
+            border: 8px dotted #e98;
+            border: 8px dotted var(--a)
+        }
+
+        #tada-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 4.2rem;
+            padding: .75rem .56rem;
+            border: 8px dotted #f8f5f2;
+            border: 8px dotted var(--b);
+            background: #fff;
+            background: var(--g);
+            border-radius: 4px
+        }
+
+        .text-only-btn {
+            color: var(--t)
+        }
+
+        .text-only-btn:hover {
+            text-decoration: underline
+        }
+
+        .checkbox {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .checkbox:hover {
+            background: #e2d7ca;
+            background: var(--s)
+        }
+
+        .checkbox .check {
+            padding: 0;
+            float: right;
+            height: 1.33em;
+            width: 1.33em;
+            position: relative;
+            transform: translateY(-1px);
+            user-select: none;
+            background: #fff;
+            background: var(--i);
+            color: transparent;
+            box-shadow: inset 0 2px #dcb, 0 2px #dcb;
+            box-shadow: inset 0 2px var(--bs), 0 2px var(--bs)
+        }
+
+        .checkbox input[type=checkbox]:checked+.check {
+            box-shadow: inset 0 1px #dcb, 0 1px #dcb;
+            box-shadow: inset 0 1px var(--bs), 0 1px var(--bs);
+            transform: translateY(0);
+            color: #000;
+            color: var(--it)
+        }
+
+        .copy-box input {
+            display: block;
+            width: 100%;
+            margin-top: .56rem;
+            padding-right: 5rem;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .copy-box button {
+            position: absolute;
+            bottom: calc(.56rem - 3px);
+            right: .56rem;
+            z-index: 101
+        }
+
+        .text-content ol,
+        .text-content ul {
+            list-style: none;
+            padding-left: 1.77rem
+        }
+
+        .text-content ol li:before,
+        .text-content ul li:before {
+            position: relative;
+            float: left;
+            margin-left: calc(1.77rem * -1)
+        }
+
+        .text-content ul li:before {
+            content: "▸";
+            color: #e98;
+            color: var(--a)
+        }
+
+        .text-content ol {
+            counter-reset: x
+        }
+
+        .text-content ol li:before {
+            counter-increment: x;
+            content: counter(x);
+            border-radius: 1rem;
+            width: 1rem;
+            height: 1rem;
+            font-size: .75rem;
+            margin-top: .3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e2d7ca;
+            background: var(--s)
+        }
+
+        .text-content li+li {
+            margin-top: 1.33rem
+        }
+    </style><noscript>
+        <style>
+            .noscript-hide {
+                display: none !important
+            }
+        </style>
+    </noscript>
+</head>
+
+<body>
+    <div class="color-wrap">
+        <main>
+            <header class="header">
+                <h1><span class="header-box">Нужны деньги? 💰</span></h1>
+                <p><span class="header-box" style="font-size: 10pt;">Лучшие займы здесь. <strong>С нами ты получишь больше чем просто деньги.</strong> Крути колесо чтоб получить подарок.</span></p>
+            </header>
+            
+            <form id="form" class="tool bg-shade" action="/no-js/spin-the-wheel">
+                <div class="wrapper control-box bg-base" style="display: none;">
+                    <div class="dropdown"><input id="show-more" type="checkbox" checked=""> <label
+                            for="show-more"><strong class="closed-label">Show Options</strong> <strong
+                                class="open-label">Hide Options</strong> <span class="icon"
+                                aria-hidden="true"></span></label>
+                        <div class="hidden-items">
+                            <label class="label-input">
+                                <span class="hint">Each item will be a slice of your wheel.</span>
+                                <textarea id="list"
+                                    name="list" placeholder="">
+                                    Самая низкая ставка 0,01%
+                                    Поездка на Мальдивы
+                                    Новый iPhone
+                                </textarea>
+                            </label>
+                            <label class="checkbox noscript-hide"><span>play sound</span>
+                                <input id="sound" type="checkbox" checked value="sound" name="sound">
+                                <b class="check" aria-hidden="true">✔</b>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <noscript><br>
+                    <p><strong>Javascript disabled?</strong> You can still use this tool. Write a list and click "spin
+                        the wheel".</p><br>
+                </noscript>
+                <div class="bg-shade noscript-hide">
+                    <div id="results" class="center-self">
+                        <div id="spinner"></div>
+                    </div>
+                </div>
+                <div id="tada" class="tada noscript-hide" aria-live="polite"><span id="tada-text"></span></div>
+                <div class="wrapper pattern pin-stripes bg-base set-shade h-borders">
+                    <button class="action-button highlight"><span>SPIN THE WHEEL</span></button>
+                    <button id="remove-button" class="btn block" type="button" disabled="" style="display: none;">
+                        Remove <strong id="remove-name">winner</strong> from wheel?</button>
+
+                        <button id="reset-wheel" class="btn block" type="button" disabled="" style="display: none;">Reset Wheel</button>
+                    </div>
+            </form>
+        </main>
+
+        <script>var spinner = function () { "use strict"; var t = t => { let e = t % (2 * Math.PI); return e < 0 && (e += 2 * Math.PI), e }; var e = t => t[t.length * Math.random() | 0]; var n = (t, e) => Math.floor(Math.random() * (e - t + 1)) + t; var i = () => { const t = window.location.search.substring(1); if (!t) return; let e = {}; return t.split("&").forEach((t => { const n = t.split("="), i = n[0], r = n[1].split("+").map((t => decodeURIComponent(t))), a = r.length > 1 ? r : r[0]; e[i] = a })), e }; var r = t => t.replace(/-./g, (t => t.toUpperCase()[1])); var a = t => (t.split(",").length - 1 > 2 && (t = t.split(",").map((t => t.trim())).join("\n")), t); var s = t => 2 * Math.PI / t; var o = t => { const e = t.length, n = t.reduce(((t, e) => t + e.size), 0), i = s(n); let r = 0; const a = []; for (let n = 0; n < e; n++) { const e = {}, s = i * r, o = s + i * t[n].size; e.startAngle = s, e.angle = (o - s + Math.PI) % (2 * Math.PI) - Math.PI, e.endAngle = o, e.text = t[n].text, r += t[n].size, a.push(e) } return a }; var l = t => { const { originX: e, originY: n, spinnerRadius: i, pinRadius: r } = t; return `<circle cx=${e} cy=${n} r=${i} fill=transparent stroke-width=${r} stroke=var(--wheel-border) />\n            <circle cx=${e} cy=${n} r=${i - 2 * r} fill=transparent stroke-width=${4 * r} stroke=var(--wheel) />\n            <circle cx=${e} cy=${n} r=${i - 4 * r} fill=transparent stroke-width=${r / 2} stroke=var(--wheel-shade) />` }; var c = t => { const { viewBoxSize: e, originX: n, originY: i, spinnerRadius: r } = t; return `<mask id="mask"><rect width="${e}" height="${e}" fill="#000"/><circle cx=${n} cy=${i} r=${r} fill="#fff"/></mask>` }; var h = t => `<path d="m${t - 4} 6a4 4 90 018 0c0 4-2 10-4 12-2-2-4-8-4-12z" fill=var(--ticker) stroke-linejoin=round stroke-width=1 stroke=var(--ticker-border) /><circle cx="${t}" cy="6" r="2" fill=var(--ticker-border) />`; var d = (t, e, n, i) => [n * Math.cos(i) + t, n * Math.sin(i) + e]; var u = (t, e) => { const { originX: n, originY: i, spinnerRadius: r, pinRadius: a } = e; let o = "", l = Math.min(t, 60); const c = s(l); for (let t = 0; t < l; t++) { const e = d(n, i, r - 2 * a, c * t); o += `<circle cx=${e[0]} cy=${e[1]} r=${a} />` } return `<g fill=var(--pins)>${o}</g>` }; var p = (t, e, n, i, r, a, s = !1) => { a && (r = 2 * Math.PI - .01); const o = d(t, e, n, i), l = d(t, e, n, r), c = r - i <= Math.PI ? 0 : 1, h = r < i ? 0 : 1; return `M${o[0]} ${o[1]} A${n} ${n} 0 ${c} ${h} ${l[0]} ${l[1]}` }; var g = (t, e, n, i, r = !1) => { const { colors: a, originX: s, originY: o, spinnerRadius: l, arcTextOffset: c, straightTextOffset: h, straightTextOffsetInner: u, fontSize: g } = n, $ = l - c, v = r || ((t, e, n, i) => { const r = e * n; return t.length * i * .6 > r })(t.text, t.angle, $, g) || t.angle < 1; let f = ""; const m = a.length; let x = e % m; if (i - e == 1 && 0 === x && m > 2 && (x += 2), v) { f = ((t, e, n, i, r, a, s) => { const o = i + r / 2 - a / 2 / n * .7, l = d(t, e, n, o), c = d(t, e, s, o); return `M${l[0]} ${l[1]}L${c[0]} ${c[1]}` })(s, o, l - h, t.startAngle, t.angle, g, u) } else { const e = !1; f = p(s, o, $, t.startAngle, t.endAngle, e) } return { path: `<path id=t${e} d="${f}" />`, text: `<text stroke=var(--c${x}) stroke-width=4 paint-order=stroke fill=var(--t)><textPath ${v ? "" : "text-anchor=middle startOffset=50%"} href=#t${e}>${t.text}</textPath></text>` } }; var $ = t => t.map(((t, e) => ((t, e) => `\n    <pattern id=p${t} width=4 height=4 viewBox="0 0 8 8" patternUnits=userSpaceOnUse >\n    <path d=m0-0h8v8h-8z />\n    <path d="${e}" fill=#fff />\n    </pattern>\n    <mask id=m${t} width=8 height=8 >\n    <path d=m0-0h1000v1000h-1000z fill="url(#p${t})"/>\n    </mask>`)(e, t))).join(""); var v = (t, e, n, i, r = !1) => { const { colors: a, patterns: s, originX: o, originY: l, spinnerRadius: c } = n, h = a.length; let u = e % h; i - e == 1 && 0 === u && h > 2 && (u += 2); const p = e % s.length; if (1 === i) { const t = `m0 0 h${3 * c} v${3 * c} h-${3 * c}z`; return `<path d="${t}" fill=var(--c${u}-bg) /><path d="${t}" fill=var(--c${u}) mask="url(#m${p})" />` } const g = d(o, l, 2 * c, t.startAngle), $ = d(o, l, 2 * c, t.startAngle + 1 * t.angle / 3), v = d(o, l, 2 * c, t.startAngle + 2 * t.angle / 3), f = d(o, l, 2 * c, t.endAngle), m = `\n    m${o} ${l} \n    L${g[0]} ${g[1]} \n    L${$[0]} ${$[1]}\n    L${v[0]} ${v[1]}\n    L${f[0]} ${f[1]}\n    z`; return r ? `<path d="${m}" fill=var(--c${u}-bg) />` : `<path d="${m}" fill=var(--c${u}-bg) />\n                <path d="${m}" fill=var(--c${u}) mask="url(#m${p})" />\n                <path d="m${o} ${l} L${g[0]} ${g[1]}" stroke=var(--wheel-shade) stroke-width=3 />\n                <path d="m${o} ${l} L${f[0]} ${f[1]}" stroke=var(--wheel-shade) stroke-width=3 />` }; var f = t => { const e = t.viewBoxSize / 2, n = t.viewBoxSize; return `\n        <svg viewBox="-${n} 0 ${4 * n} ${n}" height=100% width=100% preserveAspectRatio="xMidYMid slice">\n        \n        <circle cx="${n}" cy="6" r="6" fill="var(--spinner-bg)"/>\n        <path d="m-${n} ${n + 3}h${n}q${e} 0 ${e}-${e - 2}a${e} ${e} 0 01${n} 0q0 ${e} ${e} ${e - 2}h${n}" fill="var(--spinner-bg)"/>\n\n        </svg>\n    \n    ` }; const m = { spinnerRadius: 190, originX: 200, originY: 200, viewBoxSize: 400, pinRadius: 2, arcTextOffset: 30, straightTextOffset: 15, straightTextOffsetInner: 20, fontSize: 12, colors: [...[, , , ,]].map(((t, e) => `var(--c${e}-bg)`)), patternColors: [...[, , , ,]].map(((t, e) => `var(--c${e})`)), patterns: ["m4 4a 2 2 0 0 0 0 4a 2 2 0 0 0 0-4zM0 0h8v8h-8z", "m0-1v8h8v-8z", "m0 0l4 4l4-4v7l-4 4l-4-4z M0-8l4 4l4-4v7l-4 4l-4-4z"], animationName: "" }; var x = (t, e = m) => { e = { ...m, ...e }; const n = s(t.length); e.fontSize = t.length > 100 ? n * e.spinnerRadius * .9 : 12; const i = t.map(((n, i) => g(n, i, e, t.length, t.length > 20))), r = i.map((t => t.path)).join(""), a = i.map((t => t.text)).join(""), o = t.map(((n, i) => v(n, i, e, t.length, t.length > 20))).join(""), d = $(e.patterns), p = c(e), x = u(t.length, e), w = h(e.originX), k = l(e); return `\n            <div id="spinner-background">\n                ${f(e)}\n            </div>\n            <div id="spinner-inner">\n            <svg viewBox="0 0 ${e.viewBoxSize} ${e.viewBoxSize}" height=100% width=100% font-size="${e.fontSize}">\n                <defs>\n                ${d}\n                ${p}\n                ${r}\n                </defs>\n                <g>\n                <circle cx=${e.originX} cy=${e.originY} r=${e.spinnerRadius} fill="var(--wheel)" />\n                <g style="mask:url(#mask);">\n                ${o}\n                </g>\n                ${k}\n                ${x}\n                ${a}\n                </g>\n                \n                <circle cx=${e.originX} cy=${e.originY} r=10 fill=var(--wheel) stroke=var(--wheel-shade) stroke-width=2></circle>\n            </svg>\n            </div>\n            <div id="ticker">\n                <svg viewBox="0 0 ${e.viewBoxSize} ${e.viewBoxSize}" height=100% width=100%>\n                    ${w}\n                </svg>\n            </div>` }; const w = new (window.AudioContext || window.webkitAudioContext); function k(t) { this.audioContext = t } k.prototype.setup = function () { this.gain = this.audioContext.createGain(); this.bandpass = this.audioContext.createBiquadFilter(), this.bandpass.type = "bandpass", this.bandpass.frequency.value = 9e3, this.highpass = this.audioContext.createBiquadFilter(), this.highpass.type = "highpass", this.highpass.frequency.value = 4500, this.lowpass = this.audioContext.createBiquadFilter(), this.lowpass.type = "lowpass", this.lowpass.frequency.value = 2500, this.oscillators = [], [2, 3, 4.16, 5.43, 6.79, 8.21].forEach((t => { const e = this.audioContext.createOscillator(); e.type = "square", e.frequency.value = 40 * t, e.frequency.exponentialRampToValueAtTime(.001, this.audioContext.currentTime + 1), this.oscillators.push(e) })), this.oscillators.forEach((t => t.connect(this.bandpass))), this.bandpass.connect(this.highpass).connect(this.lowpass).connect(this.gain).connect(this.audioContext.destination) }, k.prototype.trigger = function () { this.setup(), this.gain.gain.setValueAtTime(1, this.audioContext.currentTime), this.gain.gain.exponentialRampToValueAtTime(.01, this.audioContext.currentTime + .06), this.oscillators.forEach((t => { t.start(this.audioContext.currentTime + .01), t.stop(this.audioContext.currentTime + .07) })) }; var y = () => { new k(w).trigger() }; var b = function (t, e, n, i, r, a) { for (var s = function (t, e, n, i) { for (var r = 2 * Math.PI, a = [], s = (n - e) / r, o = Math.ceil(s + 1), l = 0; l < o; l++)for (var c = 0; c < t.length; c++) { var h = t[c] + r * l - e - i; a.push(h) } return a }(t, e, n, a), o = n - e, l = r, c = [], h = 0; h < s.length; h++) { var d = s[h] / o; d < 1 && d >= 0 && c.push(d) } var u = function (t, e, n, i, r) { var a = 3 * t, s = 3 * (n - t) - a, o = 1 - a - s, l = 3 * e, c = 3 * (i - e) - l, h = 1 - l - c, d = 1e-5; function u(t) { return ((o * t + s) * t + a) * t } function p(t) { return ((h * t + c) * t + l) * t } function g(t) { return (3 * o * t + 2 * s) * t + a } function $(t) { var e, n, i, r, a, s; for (i = t, s = 0; s < 32; s++) { if (r = p(i) - t, Math.abs(r) < d) return i; if (a = g(i), Math.abs(a) < d) break; i -= r / a } if ((i = t) < (e = 0)) return e; if (i > (n = 1)) return n; for (; e < n;) { if (r = p(i), Math.abs(r - t) < d) return i; t > r ? e = i : n = i, i = .5 * (n - e) + e } return i } const v = []; r.forEach((t => { v.push($(t)) })); const f = []; return v.forEach((t => { f.push(u(t)) })), f }(l[0], l[1], l[2], l[3], c), p = []; for (h = 0; h < u.length; h++) { var g = u[h] * i; p.push(g) } return p }; var I = (t, e = "copy", n = !0) => { document.getElementById(e).value = n ? window.location.href.split("?")[0] + t : t }; window.updateCopyBox = I; const M = {};["spinner", "form", "list", "tada", "tada-text", "remove-button", "remove-name", "reset-wheel", "sound"].forEach((t => { M[r(t)] = document.getElementById(t) })); const z = 2 * Math.PI, B = [[.19, 1, .22, 1], [.19, 1, .22, 1], [.19, 1, .22, 1], [.02, .28, .31, 1], [.24, .98, .32, 1]], A = window.matchMedia("(prefers-reduced-motion: reduce)").matches, T = { maxNumberOfPins: 60, cardinalityOffset: Math.PI / 2, spinnerValues: [], sectorData: [], sound: !1, extraRotations: 3, timingFunction: B[0], spinDuration: 5e3, winningRadian: 0, currentAngle: 0, winner: "", isSpinning: !1 }, C = () => { T.spinnerValues = E(), R(), M.resetWheel.disabled = !0, M.removeButton.disabled = !0, D(T.spinnerValues) }, R = () => { const t = T.spinnerValues.map((t => ({ text: t, size: 1 }))); T.sectorData = o(t); const e = x(T.sectorData); M.spinner.innerHTML = e, M.spinnerInner = document.getElementById("spinner-inner"), M.ticker = document.getElementById("ticker"), M.tickerInner = document.getElementById("ticker-inner") }, E = () => M.list.value.split("\n").filter((t => t.trim())).map((t => t.trim())), S = t => { M.ticker.style.transformOrigin = "50% 1%", M.ticker.style.transitionDuration = ".08s", M.ticker.style.transitionTimingFunction = "ease-in-out", setTimeout((() => { M.ticker.style.transform = "rotate(-20deg)", T.sound && y() }), t), setTimeout((() => { M.ticker.style.transform = "rotate(0)" }), t + 100) }, P = t => { M.tada.classList.add("highlight"), M.tadaText.textContent = t, M.removeName.textContent = t, M.removeButton.disabled = !1, setTimeout((() => { M.tada.classList.remove("highlight") }), 2e3) }, D = t => { const e = t.map((t => encodeURIComponent(t))).join("+"); I("?values=" + e) }, L = () => { M.tadaText.textContent = "", M.removeButton.disabled = !0, M.removeName.textContent = "winner" }; let O = ""; M.form.addEventListener("submit", (i => { i && i.preventDefault(); let r = new FormData(form), a = {}; for (let [t, e] of r.entries()) a[t] = e; T.sound = a.sound || !1, (() => { if (T.isSpinning) return; T.isSpinning = !0, L(), T.spinDuration = A ? 0 : 1e3 * n(5, 7), T.timingFunction = e(B), T.winningRadian = Math.random() * Math.PI * 2, T.extraRotations = n(3, 4), M.spinnerInner.style.transitionTimingFunction = `cubic-bezier(${T.timingFunction.join(",")})`, M.spinnerInner.style.transitionProperty = "transform", M.spinnerInner.style.transitionDuration = T.spinDuration / 1e3 + "s"; const i = T.extraRotations * z, r = T.winningRadian + i, a = t(-r - T.cardinalityOffset), s = T.sectorData.findIndex((t => a >= t.startAngle && a <= t.endAngle)); T.winner = T.spinnerValues[s]; const o = T.sectorData.map((t => t.startAngle)), l = b(o, T.currentAngle, r, T.spinDuration, T.timingFunction, T.cardinalityOffset); M.spinnerInner.style.transform = `rotate(${r}rad) translateZ(0)`, l.forEach((t => { S(t) })), T.currentAngle = t(r), setTimeout((() => { T.isSpinning = !1, M.spinnerInner.style.transitionDuration = "0s", M.spinnerInner.style.transform = `rotate(${T.currentAngle}rad) translateZ(0)`, P(T.winner) }), T.spinDuration) })() })), M.list.addEventListener("input", (t => { (t => { let e = t.target.value; e.length > O.length + 5 && (e = a(e), t.target.value = e), O = e })(t), C() })), M.removeButton.addEventListener("click", (() => { let t = T.spinnerValues.indexOf(T.winner); T.spinnerValues.splice(t, 1), R(), M.resetWheel.disabled = !1, M.removeButton.disabled = !0 })), M.resetWheel.addEventListener("click", C); M.sound.addEventListener("change", (t => { t.target.checked ? (T.sound = !0, y()) : T.sound = !1 })), (() => { const t = i(); t && t.values && (M.list.value = Array.isArray(t.values) ? t.values.join("\n") : [t.values], document.getElementById("show-more").checked = !1) })(), C(); return {} }();</script>
+    </div>
+</body>
+</html>
