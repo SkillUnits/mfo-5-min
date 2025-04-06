@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta id="light-theme" name="theme-color" media="(prefers-color-scheme: light)" content="#f1eae4">
     <meta id="dark-theme" name="theme-color" media="(prefers-color-scheme: dark)" content="#322e2f">
-    <title>Spin the Wheel | Missing Dice</title>
-    <meta name="description"
-        content="Can't decide? Create a spinning wheel of names, decisions, or tasks, and leave it up to random chance. Let the wheel decide.">
+    <title>Credity.kz - онлайн кредит на карту</title>
+    <link rel="stylesheet" media="all" href="css/main.css">
+    <meta name="description" content="Credity.kz - самые выгодные кредиты в Казахстане.">
+    <script src="js/offers.js"></script>
     <style>
         @charset "UTF-8";
 
@@ -1290,7 +1291,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             padding: 4px;
-            align-items: center
+            align-items: center;
         }
 
         .tada.highlight #tada-text {
@@ -1410,6 +1411,39 @@
         .text-content li+li {
             margin-top: 1.33rem
         }
+
+        /* Animation for fade-out */
+        .fade-out {
+            animation: fadeOut 1s forwards;
+        }
+
+        /* Animation for fade-in */
+        .fade-in {
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Define fade-in keyframes */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                display: block;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Define fade-out keyframes */
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                display: none;
+            }
+        }
+
     </style><noscript>
         <style>
             .noscript-hide {
@@ -1422,54 +1456,124 @@
 <body>
     <div class="color-wrap">
         <main>
-            <header class="header">
-                <h1><span class="header-box">Нужны деньги? 💰</span></h1>
-                <p><span class="header-box" style="font-size: 10pt;">Самые выгодные займы здесь. <strong>С нами ты получишь больше чем просто деньги.</strong> Крути колесо фортуны чтоб получить подарки.</span></p>
-            </header>
-            
-            <form id="form" class="tool bg-shade" action="/no-js/spin-the-wheel">
-                <div class="wrapper control-box bg-base" style="display: none;">
-                    <div class="dropdown"><input id="show-more" type="checkbox" checked=""> <label
-                            for="show-more"><strong class="closed-label">Show Options</strong> <strong
-                                class="open-label">Hide Options</strong> <span class="icon"
-                                aria-hidden="true"></span></label>
-                        <div class="hidden-items">
-                            <label class="label-input">
-                                <span class="hint">Each item will be a slice of your wheel.</span>
-                                <textarea id="list" name="list" placeholder="">
-                                    Самая низкая ставка 0,01%
-                                    Поездка на Мальдивы
-                                    Новый iPhone
-                                </textarea>
-                            </label>
-                            <label class="checkbox noscript-hide"><span>play sound</span>
-                                <input id="sound" type="checkbox" checked value="sound" name="sound">
-                                <b class="check" aria-hidden="true">✔</b>
-                            </label>
+            <div class="main" id="mainContent">
+                <header class="header">
+                    <h1><span class="header-box">Нужны деньги? 💰</span></h1>
+                    <p><span class="header-box" style="font-size: 10pt;">Самые выгодные займы здесь. <strong>С нами ты получишь больше чем просто деньги.</strong> Крути колесо фортуны чтоб получить подарки.</span></p>
+                </header>
+                
+                <form id="form" class="tool bg-shade" action="/no-js/spin-the-wheel">
+                    <div class="wrapper control-box bg-base" style="display: none;">
+                        <div class="dropdown"><input id="show-more" type="checkbox" checked=""> <label
+                                for="show-more"><strong class="closed-label">Show Options</strong> <strong
+                                    class="open-label">Hide Options</strong> <span class="icon"
+                                    aria-hidden="true"></span></label>
+                            <div class="hidden-items">
+                                <label class="label-input">
+                                    <span class="hint">Each item will be a slice of your wheel.</span>
+                                    <textarea id="list" name="list" placeholder="">
+                                        Самая низкая ставка 0,01%
+                                        Поездка на Мальдивы
+                                        Новый iPhone
+                                    </textarea>
+                                </label>
+                                <label class="checkbox noscript-hide"><span>play sound</span>
+                                    <input id="sound" type="checkbox" checked value="sound" name="sound">
+                                    <b class="check" aria-hidden="true">✔</b>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <noscript><br>
+                        <p><strong>Javascript disabled?</strong> You can still use this tool. Write a list and click "spin
+                            the wheel".</p><br>
+                    </noscript>
+                    <div class="bg-shade noscript-hide" id="wheel-wrapper">
+                        <div id="results" class="center-self">
+                            <div id="spinner"></div>
+                        </div>
+                    </div>
+
+                    <div id="tada" class="tada noscript-hide" style="margin-top:-10px;" aria-live="polite">
+                        <span id="tada-text"></span>
+                    </div>
+
+                    <!-- Offers list -->
+                    <div class="third_page step-page" style="margin-top: 30px; display: none;" id="offers-list-wrapper">
+                        <div class="container">
+                            <div class="inner_wrapper inner-cont">
+                                <div class="title_holder">
+                                    <div class="main_subtitle">Специально для Вас</div>
+                                </div>
+                                <div class="offers_wrapper" id="offers_list">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Offers list end -->
+
+                    <div class="wrapper pattern pin-stripes bg-base set-shade h-borders">
+                        <button class="action-button highlight" id="spin-button"><span>SPIN THE WHEEL</span></button>
+                        <button id="remove-button" class="btn block" type="button" disabled="" style="display: none;">
+                            Remove <strong id="remove-name">winner</strong> from wheel?</button>
+                            <button id="reset-wheel" class="btn block" type="button" disabled="" style="display: none;">Reset Wheel</button>
+                        </div>
+                </form>
+
+                <div class="container">
+                    <div class="inner_wrapper inner-cont">
+                        <div class="bottom_text">
+                            <h3>Заполните заявку сейчас, и деньги у вас</h3>
+                            <p>Услуга поиска кредитных предложений "Credity.kz" предлагает компания ТОО "Сейлздаблер". Сайт не предоставляет платных услуг кредитных продуктов для клиентов, а именно предлагает клиенту список предложений кредитных учреждений, некредитных финансовых организаций, к которым клиент может обратиться с целью оформления заявки на кредитный продукт. Проект не является банком или кредитором, не относится к финансовым учреждениям и не несет ответственности за последствия любых заключенных договоров кредитования или поручительства перед ним. Минимальная процентная ставка у некоторых партнеров составляет 0,01%. Чтобы оформить заявку на получение займа, необходимо заполнить анкету на сайте проекта. Совершая любые действия на сайте, вы должны предоставить свое согласие на обработку персональных данных и согласие на получение рекламных материалов. Вы ознакомились и согласны с Договором публичной оферты и Тарифами сервиса. Сервис "Credity.kz" использует куки для предоставления услуг. Условия хранения или доступа к cookie Вы можете настроить в своем браузере. Сервис предназначен для лиц в возрасте от 18 лет. Расчет в предоставленных на сайте калькуляторах основывается на среднем показателе процентной ставки, которая будет предложена финансовыми организациями.</p>
                         </div>
                     </div>
                 </div>
-                <noscript><br>
-                    <p><strong>Javascript disabled?</strong> You can still use this tool. Write a list and click "spin
-                        the wheel".</p><br>
-                </noscript>
-                <div class="bg-shade noscript-hide">
-                    <div id="results" class="center-self">
-                        <div id="spinner"></div>
-                    </div>
-                </div>
-                <div id="tada" class="tada noscript-hide" aria-live="polite"><span id="tada-text"></span></div>
-                <div class="wrapper pattern pin-stripes bg-base set-shade h-borders">
-                    <button class="action-button highlight"><span>SPIN THE WHEEL</span></button>
-                    <button id="remove-button" class="btn block" type="button" disabled="" style="display: none;">
-                        Remove <strong id="remove-name">winner</strong> from wheel?</button>
+            </div>
 
-                        <button id="reset-wheel" class="btn block" type="button" disabled="" style="display: none;">Reset Wheel</button>
-                    </div>
-            </form>
         </main>
 
-        <script>var spinner = function () { "use strict"; var t = t => { let e = t % (2 * Math.PI); return e < 0 && (e += 2 * Math.PI), e }; var e = t => t[t.length * Math.random() | 0]; var n = (t, e) => Math.floor(Math.random() * (e - t + 1)) + t; var i = () => { const t = window.location.search.substring(1); if (!t) return; let e = {}; return t.split("&").forEach((t => { const n = t.split("="), i = n[0], r = n[1].split("+").map((t => decodeURIComponent(t))), a = r.length > 1 ? r : r[0]; e[i] = a })), e }; var r = t => t.replace(/-./g, (t => t.toUpperCase()[1])); var a = t => (t.split(",").length - 1 > 2 && (t = t.split(",").map((t => t.trim())).join("\n")), t); var s = t => 2 * Math.PI / t; var o = t => { const e = t.length, n = t.reduce(((t, e) => t + e.size), 0), i = s(n); let r = 0; const a = []; for (let n = 0; n < e; n++) { const e = {}, s = i * r, o = s + i * t[n].size; e.startAngle = s, e.angle = (o - s + Math.PI) % (2 * Math.PI) - Math.PI, e.endAngle = o, e.text = t[n].text, r += t[n].size, a.push(e) } return a }; var l = t => { const { originX: e, originY: n, spinnerRadius: i, pinRadius: r } = t; return `<circle cx=${e} cy=${n} r=${i} fill=transparent stroke-width=${r} stroke=var(--wheel-border) />\n            <circle cx=${e} cy=${n} r=${i - 2 * r} fill=transparent stroke-width=${4 * r} stroke=var(--wheel) />\n            <circle cx=${e} cy=${n} r=${i - 4 * r} fill=transparent stroke-width=${r / 2} stroke=var(--wheel-shade) />` }; var c = t => { const { viewBoxSize: e, originX: n, originY: i, spinnerRadius: r } = t; return `<mask id="mask"><rect width="${e}" height="${e}" fill="#000"/><circle cx=${n} cy=${i} r=${r} fill="#fff"/></mask>` }; var h = t => `<path d="m${t - 4} 6a4 4 90 018 0c0 4-2 10-4 12-2-2-4-8-4-12z" fill=var(--ticker) stroke-linejoin=round stroke-width=1 stroke=var(--ticker-border) /><circle cx="${t}" cy="6" r="2" fill=var(--ticker-border) />`; var d = (t, e, n, i) => [n * Math.cos(i) + t, n * Math.sin(i) + e]; var u = (t, e) => { const { originX: n, originY: i, spinnerRadius: r, pinRadius: a } = e; let o = "", l = Math.min(t, 60); const c = s(l); for (let t = 0; t < l; t++) { const e = d(n, i, r - 2 * a, c * t); o += `<circle cx=${e[0]} cy=${e[1]} r=${a} />` } return `<g fill=var(--pins)>${o}</g>` }; var p = (t, e, n, i, r, a, s = !1) => { a && (r = 2 * Math.PI - .01); const o = d(t, e, n, i), l = d(t, e, n, r), c = r - i <= Math.PI ? 0 : 1, h = r < i ? 0 : 1; return `M${o[0]} ${o[1]} A${n} ${n} 0 ${c} ${h} ${l[0]} ${l[1]}` }; var g = (t, e, n, i, r = !1) => { const { colors: a, originX: s, originY: o, spinnerRadius: l, arcTextOffset: c, straightTextOffset: h, straightTextOffsetInner: u, fontSize: g } = n, $ = l - c, v = r || ((t, e, n, i) => { const r = e * n; return t.length * i * .6 > r })(t.text, t.angle, $, g) || t.angle < 1; let f = ""; const m = a.length; let x = e % m; if (i - e == 1 && 0 === x && m > 2 && (x += 2), v) { f = ((t, e, n, i, r, a, s) => { const o = i + r / 2 - a / 2 / n * .7, l = d(t, e, n, o), c = d(t, e, s, o); return `M${l[0]} ${l[1]}L${c[0]} ${c[1]}` })(s, o, l - h, t.startAngle, t.angle, g, u) } else { const e = !1; f = p(s, o, $, t.startAngle, t.endAngle, e) } return { path: `<path id=t${e} d="${f}" />`, text: `<text stroke=var(--c${x}) stroke-width=4 paint-order=stroke fill=var(--t)><textPath ${v ? "" : "text-anchor=middle startOffset=50%"} href=#t${e}>${t.text}</textPath></text>` } }; var $ = t => t.map(((t, e) => ((t, e) => `\n    <pattern id=p${t} width=4 height=4 viewBox="0 0 8 8" patternUnits=userSpaceOnUse >\n    <path d=m0-0h8v8h-8z />\n    <path d="${e}" fill=#fff />\n    </pattern>\n    <mask id=m${t} width=8 height=8 >\n    <path d=m0-0h1000v1000h-1000z fill="url(#p${t})"/>\n    </mask>`)(e, t))).join(""); var v = (t, e, n, i, r = !1) => { const { colors: a, patterns: s, originX: o, originY: l, spinnerRadius: c } = n, h = a.length; let u = e % h; i - e == 1 && 0 === u && h > 2 && (u += 2); const p = e % s.length; if (1 === i) { const t = `m0 0 h${3 * c} v${3 * c} h-${3 * c}z`; return `<path d="${t}" fill=var(--c${u}-bg) /><path d="${t}" fill=var(--c${u}) mask="url(#m${p})" />` } const g = d(o, l, 2 * c, t.startAngle), $ = d(o, l, 2 * c, t.startAngle + 1 * t.angle / 3), v = d(o, l, 2 * c, t.startAngle + 2 * t.angle / 3), f = d(o, l, 2 * c, t.endAngle), m = `\n    m${o} ${l} \n    L${g[0]} ${g[1]} \n    L${$[0]} ${$[1]}\n    L${v[0]} ${v[1]}\n    L${f[0]} ${f[1]}\n    z`; return r ? `<path d="${m}" fill=var(--c${u}-bg) />` : `<path d="${m}" fill=var(--c${u}-bg) />\n                <path d="${m}" fill=var(--c${u}) mask="url(#m${p})" />\n                <path d="m${o} ${l} L${g[0]} ${g[1]}" stroke=var(--wheel-shade) stroke-width=3 />\n                <path d="m${o} ${l} L${f[0]} ${f[1]}" stroke=var(--wheel-shade) stroke-width=3 />` }; var f = t => { const e = t.viewBoxSize / 2, n = t.viewBoxSize; return `\n        <svg viewBox="-${n} 0 ${4 * n} ${n}" height=100% width=100% preserveAspectRatio="xMidYMid slice">\n        \n        <circle cx="${n}" cy="6" r="6" fill="var(--spinner-bg)"/>\n        <path d="m-${n} ${n + 3}h${n}q${e} 0 ${e}-${e - 2}a${e} ${e} 0 01${n} 0q0 ${e} ${e} ${e - 2}h${n}" fill="var(--spinner-bg)"/>\n\n        </svg>\n    \n    ` }; const m = { spinnerRadius: 190, originX: 200, originY: 200, viewBoxSize: 400, pinRadius: 2, arcTextOffset: 30, straightTextOffset: 15, straightTextOffsetInner: 20, fontSize: 12, colors: [...[, , , ,]].map(((t, e) => `var(--c${e}-bg)`)), patternColors: [...[, , , ,]].map(((t, e) => `var(--c${e})`)), patterns: ["m4 4a 2 2 0 0 0 0 4a 2 2 0 0 0 0-4zM0 0h8v8h-8z", "m0-1v8h8v-8z", "m0 0l4 4l4-4v7l-4 4l-4-4z M0-8l4 4l4-4v7l-4 4l-4-4z"], animationName: "" }; var x = (t, e = m) => { e = { ...m, ...e }; const n = s(t.length); e.fontSize = t.length > 100 ? n * e.spinnerRadius * .9 : 14; const i = t.map(((n, i) => g(n, i, e, t.length, t.length > 20))), r = i.map((t => t.path)).join(""), a = i.map((t => t.text)).join(""), o = t.map(((n, i) => v(n, i, e, t.length, t.length > 20))).join(""), d = $(e.patterns), p = c(e), x = u(t.length, e), w = h(e.originX), k = l(e); return `\n            <div id="spinner-background">\n                ${f(e)}\n            </div>\n            <div id="spinner-inner">\n            <svg viewBox="0 0 ${e.viewBoxSize} ${e.viewBoxSize}" height=100% width=100% font-size="${e.fontSize}">\n                <defs>\n                ${d}\n                ${p}\n                ${r}\n                </defs>\n                <g>\n                <circle cx=${e.originX} cy=${e.originY} r=${e.spinnerRadius} fill="var(--wheel)" />\n                <g style="mask:url(#mask);">\n                ${o}\n                </g>\n                ${k}\n                ${x}\n                ${a}\n                </g>\n                \n                <circle cx=${e.originX} cy=${e.originY} r=10 fill=var(--wheel) stroke=var(--wheel-shade) stroke-width=2></circle>\n            </svg>\n            </div>\n            <div id="ticker">\n                <svg viewBox="0 0 ${e.viewBoxSize} ${e.viewBoxSize}" height=100% width=100%>\n                    ${w}\n                </svg>\n            </div>` }; const w = new (window.AudioContext || window.webkitAudioContext); function k(t) { this.audioContext = t } k.prototype.setup = function () { this.gain = this.audioContext.createGain(); this.bandpass = this.audioContext.createBiquadFilter(), this.bandpass.type = "bandpass", this.bandpass.frequency.value = 9e3, this.highpass = this.audioContext.createBiquadFilter(), this.highpass.type = "highpass", this.highpass.frequency.value = 4500, this.lowpass = this.audioContext.createBiquadFilter(), this.lowpass.type = "lowpass", this.lowpass.frequency.value = 2500, this.oscillators = [], [2, 3, 4.16, 5.43, 6.79, 8.21].forEach((t => { const e = this.audioContext.createOscillator(); e.type = "square", e.frequency.value = 40 * t, e.frequency.exponentialRampToValueAtTime(.001, this.audioContext.currentTime + 1), this.oscillators.push(e) })), this.oscillators.forEach((t => t.connect(this.bandpass))), this.bandpass.connect(this.highpass).connect(this.lowpass).connect(this.gain).connect(this.audioContext.destination) }, k.prototype.trigger = function () { this.setup(), this.gain.gain.setValueAtTime(1, this.audioContext.currentTime), this.gain.gain.exponentialRampToValueAtTime(.01, this.audioContext.currentTime + .06), this.oscillators.forEach((t => { t.start(this.audioContext.currentTime + .01), t.stop(this.audioContext.currentTime + .07) })) }; var y = () => { new k(w).trigger() }; var b = function (t, e, n, i, r, a) { for (var s = function (t, e, n, i) { for (var r = 2 * Math.PI, a = [], s = (n - e) / r, o = Math.ceil(s + 1), l = 0; l < o; l++)for (var c = 0; c < t.length; c++) { var h = t[c] + r * l - e - i; a.push(h) } return a }(t, e, n, a), o = n - e, l = r, c = [], h = 0; h < s.length; h++) { var d = s[h] / o; d < 1 && d >= 0 && c.push(d) } var u = function (t, e, n, i, r) { var a = 3 * t, s = 3 * (n - t) - a, o = 1 - a - s, l = 3 * e, c = 3 * (i - e) - l, h = 1 - l - c, d = 1e-5; function u(t) { return ((o * t + s) * t + a) * t } function p(t) { return ((h * t + c) * t + l) * t } function g(t) { return (3 * o * t + 2 * s) * t + a } function $(t) { var e, n, i, r, a, s; for (i = t, s = 0; s < 32; s++) { if (r = p(i) - t, Math.abs(r) < d) return i; if (a = g(i), Math.abs(a) < d) break; i -= r / a } if ((i = t) < (e = 0)) return e; if (i > (n = 1)) return n; for (; e < n;) { if (r = p(i), Math.abs(r - t) < d) return i; t > r ? e = i : n = i, i = .5 * (n - e) + e } return i } const v = []; r.forEach((t => { v.push($(t)) })); const f = []; return v.forEach((t => { f.push(u(t)) })), f }(l[0], l[1], l[2], l[3], c), p = []; for (h = 0; h < u.length; h++) { var g = u[h] * i; p.push(g) } return p }; var I = (t, e = "copy", n = !0) => { document.getElementById(e).value = n ? window.location.href.split("?")[0] + t : t }; window.updateCopyBox = I; const M = {};["spinner", "form", "list", "tada", "tada-text", "remove-button", "remove-name", "reset-wheel", "sound"].forEach((t => { M[r(t)] = document.getElementById(t) })); const z = 2 * Math.PI, B = [[.19, 1, .22, 1], [.19, 1, .22, 1], [.19, 1, .22, 1], [.02, .28, .31, 1], [.24, .98, .32, 1]], A = window.matchMedia("(prefers-reduced-motion: reduce)").matches, T = { maxNumberOfPins: 60, cardinalityOffset: Math.PI / 2, spinnerValues: [], sectorData: [], sound: !1, extraRotations: 3, timingFunction: B[0], spinDuration: 5e3, winningRadian: 0, currentAngle: 0, winner: "", isSpinning: !1 }, C = () => { T.spinnerValues = E(), R(), M.resetWheel.disabled = !0, M.removeButton.disabled = !0, D(T.spinnerValues) }, R = () => { const t = T.spinnerValues.map((t => ({ text: t, size: 1 }))); T.sectorData = o(t); const e = x(T.sectorData); M.spinner.innerHTML = e, M.spinnerInner = document.getElementById("spinner-inner"), M.ticker = document.getElementById("ticker"), M.tickerInner = document.getElementById("ticker-inner") }, E = () => M.list.value.split("\n").filter((t => t.trim())).map((t => t.trim())), S = t => { M.ticker.style.transformOrigin = "50% 1%", M.ticker.style.transitionDuration = ".08s", M.ticker.style.transitionTimingFunction = "ease-in-out", setTimeout((() => { M.ticker.style.transform = "rotate(-20deg)", T.sound && y() }), t), setTimeout((() => { M.ticker.style.transform = "rotate(0)" }), t + 100) }, P = t => { M.tada.classList.add("highlight"), M.tadaText.textContent = t, M.removeName.textContent = t, M.removeButton.disabled = !1, setTimeout((() => { M.tada.classList.remove("highlight") }), 2e3) }, D = t => { const e = t.map((t => encodeURIComponent(t))).join("+"); I("?values=" + e) }, L = () => { M.tadaText.textContent = "", M.removeButton.disabled = !0, M.removeName.textContent = "winner" }; let O = ""; M.form.addEventListener("submit", (i => { i && i.preventDefault(); let r = new FormData(form), a = {}; for (let [t, e] of r.entries()) a[t] = e; T.sound = a.sound || !1, (() => { if (T.isSpinning) return; T.isSpinning = !0, L(), T.spinDuration = A ? 0 : 1e3 * n(5, 7), T.timingFunction = e(B), T.winningRadian = Math.random() * Math.PI * 2, T.extraRotations = n(3, 4), M.spinnerInner.style.transitionTimingFunction = `cubic-bezier(${T.timingFunction.join(",")})`, M.spinnerInner.style.transitionProperty = "transform", M.spinnerInner.style.transitionDuration = T.spinDuration / 1e3 + "s"; const i = T.extraRotations * z, r = T.winningRadian + i, a = t(-r - T.cardinalityOffset), s = T.sectorData.findIndex((t => a >= t.startAngle && a <= t.endAngle)); T.winner = T.spinnerValues[s]; const o = T.sectorData.map((t => t.startAngle)), l = b(o, T.currentAngle, r, T.spinDuration, T.timingFunction, T.cardinalityOffset); M.spinnerInner.style.transform = `rotate(${r}rad) translateZ(0)`, l.forEach((t => { S(t) })), T.currentAngle = t(r), setTimeout((() => { T.isSpinning = !1, M.spinnerInner.style.transitionDuration = "0s", M.spinnerInner.style.transform = `rotate(${T.currentAngle}rad) translateZ(0)`, P(T.winner) }), T.spinDuration) })() })), M.list.addEventListener("input", (t => { (t => { let e = t.target.value; e.length > O.length + 5 && (e = a(e), t.target.value = e), O = e })(t), C() })), M.removeButton.addEventListener("click", (() => { let t = T.spinnerValues.indexOf(T.winner); T.spinnerValues.splice(t, 1), R(), M.resetWheel.disabled = !1, M.removeButton.disabled = !0 })), M.resetWheel.addEventListener("click", C); M.sound.addEventListener("change", (t => { t.target.checked ? (T.sound = !0, y()) : T.sound = !1 })), (() => { const t = i(); t && t.values && (M.list.value = Array.isArray(t.values) ? t.values.join("\n") : [t.values], document.getElementById("show-more").checked = !1) })(), C(); return {} }();</script>
+        <script>
+            function finish() {
+                const spinButton = document.querySelector("#spin-button");
+                const wheelWrapper = document.querySelector("#wheel-wrapper");
+                const offersWrapper = document.querySelector("#offers-list-wrapper");
+
+                spinButton.disabled = true;
+
+                // Add fade-out animation to wheel-wrapper
+                wheelWrapper.classList.add("fade-out");
+
+                // After fade-out is complete, hide the wheel-wrapper and show the offers-list-wrapper
+                setTimeout(() => {
+                    wheelWrapper.style.display = "none"; // Ensure it's hidden after animation
+                    offersWrapper.style.display = "block"; // Make offers-list-wrapper visible
+
+                    // Add fade-in animation to offers-list-wrapper
+                    offersWrapper.classList.add("fade-in");
+                    blinkTada();
+                }, 200);                
+            }
+
+            function blinkTada() {
+                setTimeout(() => {
+                    const tada = document.querySelector("#tada");
+                    if(tada.classList.contains("highlight")) {
+                        tada.classList.remove("highlight");
+                    } else {
+                        tada.classList.add("highlight");
+                    }   
+                    blinkTada()
+                }, 700);
+            }
+
+            function getRandomArbitrary(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+        </script>
+
+        <script>var spinner = function () { "use strict"; var t = t => { let e = t % (2 * Math.PI); return e < 0 && (e += 2 * Math.PI), e }; var e = t => t[t.length * Math.random() | 0]; var n = (t, e) => Math.floor(Math.random() * (e - t + 1)) + t; var i = () => { const t = window.location.search.substring(1); if (!t) return; let e = {}; return t.split("&").forEach((t => { const n = t.split("="), i = n[0], r = n[1].split("+").map((t => decodeURIComponent(t))), a = r.length > 1 ? r : r[0]; e[i] = a })), e }; var r = t => t.replace(/-./g, (t => t.toUpperCase()[1])); var a = t => (t.split(",").length - 1 > 2 && (t = t.split(",").map((t => t.trim())).join("\n")), t); var s = t => 2 * Math.PI / t; var o = t => { const e = t.length, n = t.reduce(((t, e) => t + e.size), 0), i = s(n); let r = 0; const a = []; for (let n = 0; n < e; n++) { const e = {}, s = i * r, o = s + i * t[n].size; e.startAngle = s, e.angle = (o - s + Math.PI) % (2 * Math.PI) - Math.PI, e.endAngle = o, e.text = t[n].text, r += t[n].size, a.push(e) } return a }; var l = t => { const { originX: e, originY: n, spinnerRadius: i, pinRadius: r } = t; return `<circle cx=${e} cy=${n} r=${i} fill=transparent stroke-width=${r} stroke=var(--wheel-border) />\n            <circle cx=${e} cy=${n} r=${i - 2 * r} fill=transparent stroke-width=${4 * r} stroke=var(--wheel) />\n            <circle cx=${e} cy=${n} r=${i - 4 * r} fill=transparent stroke-width=${r / 2} stroke=var(--wheel-shade) />` }; var c = t => { const { viewBoxSize: e, originX: n, originY: i, spinnerRadius: r } = t; return `<mask id="mask"><rect width="${e}" height="${e}" fill="#000"/><circle cx=${n} cy=${i} r=${r} fill="#fff"/></mask>` }; var h = t => `<path d="m${t - 4} 6a4 4 90 018 0c0 4-2 10-4 12-2-2-4-8-4-12z" fill=var(--ticker) stroke-linejoin=round stroke-width=1 stroke=var(--ticker-border) /><circle cx="${t}" cy="6" r="2" fill=var(--ticker-border) />`; var d = (t, e, n, i) => [n * Math.cos(i) + t, n * Math.sin(i) + e]; var u = (t, e) => { const { originX: n, originY: i, spinnerRadius: r, pinRadius: a } = e; let o = "", l = Math.min(t, 60); const c = s(l); for (let t = 0; t < l; t++) { const e = d(n, i, r - 2 * a, c * t); o += `<circle cx=${e[0]} cy=${e[1]} r=${a} />` } return `<g fill=var(--pins)>${o}</g>` }; var p = (t, e, n, i, r, a, s = !1) => { a && (r = 2 * Math.PI - .01); const o = d(t, e, n, i), l = d(t, e, n, r), c = r - i <= Math.PI ? 0 : 1, h = r < i ? 0 : 1; return `M${o[0]} ${o[1]} A${n} ${n} 0 ${c} ${h} ${l[0]} ${l[1]}` }; var g = (t, e, n, i, r = !1) => { const { colors: a, originX: s, originY: o, spinnerRadius: l, arcTextOffset: c, straightTextOffset: h, straightTextOffsetInner: u, fontSize: g } = n, $ = l - c, v = r || ((t, e, n, i) => { const r = e * n; return t.length * i * .6 > r })(t.text, t.angle, $, g) || t.angle < 1; let f = ""; const m = a.length; let x = e % m; if (i - e == 1 && 0 === x && m > 2 && (x += 2), v) { f = ((t, e, n, i, r, a, s) => { const o = i + r / 2 - a / 2 / n * .7, l = d(t, e, n, o), c = d(t, e, s, o); return `M${l[0]} ${l[1]}L${c[0]} ${c[1]}` })(s, o, l - h, t.startAngle, t.angle, g, u) } else { const e = !1; f = p(s, o, $, t.startAngle, t.endAngle, e) } return { path: `<path id=t${e} d="${f}" />`, text: `<text stroke=var(--c${x}) stroke-width=4 paint-order=stroke fill=var(--t)><textPath ${v ? "" : "text-anchor=middle startOffset=50%"} href=#t${e}>${t.text}</textPath></text>` } }; var $ = t => t.map(((t, e) => ((t, e) => `\n    <pattern id=p${t} width=4 height=4 viewBox="0 0 8 8" patternUnits=userSpaceOnUse >\n    <path d=m0-0h8v8h-8z />\n    <path d="${e}" fill=#fff />\n    </pattern>\n    <mask id=m${t} width=8 height=8 >\n    <path d=m0-0h1000v1000h-1000z fill="url(#p${t})"/>\n    </mask>`)(e, t))).join(""); var v = (t, e, n, i, r = !1) => { const { colors: a, patterns: s, originX: o, originY: l, spinnerRadius: c } = n, h = a.length; let u = e % h; i - e == 1 && 0 === u && h > 2 && (u += 2); const p = e % s.length; if (1 === i) { const t = `m0 0 h${3 * c} v${3 * c} h-${3 * c}z`; return `<path d="${t}" fill=var(--c${u}-bg) /><path d="${t}" fill=var(--c${u}) mask="url(#m${p})" />` } const g = d(o, l, 2 * c, t.startAngle), $ = d(o, l, 2 * c, t.startAngle + 1 * t.angle / 3), v = d(o, l, 2 * c, t.startAngle + 2 * t.angle / 3), f = d(o, l, 2 * c, t.endAngle), m = `\n    m${o} ${l} \n    L${g[0]} ${g[1]} \n    L${$[0]} ${$[1]}\n    L${v[0]} ${v[1]}\n    L${f[0]} ${f[1]}\n    z`; return r ? `<path d="${m}" fill=var(--c${u}-bg) />` : `<path d="${m}" fill=var(--c${u}-bg) />\n                <path d="${m}" fill=var(--c${u}) mask="url(#m${p})" />\n                <path d="m${o} ${l} L${g[0]} ${g[1]}" stroke=var(--wheel-shade) stroke-width=3 />\n                <path d="m${o} ${l} L${f[0]} ${f[1]}" stroke=var(--wheel-shade) stroke-width=3 />` }; var f = t => { const e = t.viewBoxSize / 2, n = t.viewBoxSize; return `\n        <svg viewBox="-${n} 0 ${4 * n} ${n}" height=100% width=100% preserveAspectRatio="xMidYMid slice">\n        \n        <circle cx="${n}" cy="6" r="6" fill="var(--spinner-bg)"/>\n        <path d="m-${n} ${n + 3}h${n}q${e} 0 ${e}-${e - 2}a${e} ${e} 0 01${n} 0q0 ${e} ${e} ${e - 2}h${n}" fill="var(--spinner-bg)"/>\n\n        </svg>\n    \n    ` }; const m = { spinnerRadius: 190, originX: 200, originY: 200, viewBoxSize: 400, pinRadius: 2, arcTextOffset: 30, straightTextOffset: 15, straightTextOffsetInner: 20, fontSize: 12, colors: [...[, , , ,]].map(((t, e) => `var(--c${e}-bg)`)), patternColors: [...[, , , ,]].map(((t, e) => `var(--c${e})`)), patterns: ["m4 4a 2 2 0 0 0 0 4a 2 2 0 0 0 0-4zM0 0h8v8h-8z", "m0-1v8h8v-8z", "m0 0l4 4l4-4v7l-4 4l-4-4z M0-8l4 4l4-4v7l-4 4l-4-4z"], animationName: "" }; var x = (t, e = m) => { e = { ...m, ...e }; const n = s(t.length); e.fontSize = t.length > 100 ? n * e.spinnerRadius * .9 : 14; const i = t.map(((n, i) => g(n, i, e, t.length, t.length > 20))), r = i.map((t => t.path)).join(""), a = i.map((t => t.text)).join(""), o = t.map(((n, i) => v(n, i, e, t.length, t.length > 20))).join(""), d = $(e.patterns), p = c(e), x = u(t.length, e), w = h(e.originX), k = l(e); return `\n            <div id="spinner-background">\n                ${f(e)}\n            </div>\n            <div id="spinner-inner">\n            <svg viewBox="0 0 ${e.viewBoxSize} ${e.viewBoxSize}" height=100% width=100% font-size="${e.fontSize}">\n                <defs>\n                ${d}\n                ${p}\n                ${r}\n                </defs>\n                <g>\n                <circle cx=${e.originX} cy=${e.originY} r=${e.spinnerRadius} fill="var(--wheel)" />\n                <g style="mask:url(#mask);">\n                ${o}\n                </g>\n                ${k}\n                ${x}\n                ${a}\n                </g>\n                \n                <circle cx=${e.originX} cy=${e.originY} r=10 fill=var(--wheel) stroke=var(--wheel-shade) stroke-width=2></circle>\n            </svg>\n            </div>\n            <div id="ticker">\n                <svg viewBox="0 0 ${e.viewBoxSize} ${e.viewBoxSize}" height=100% width=100%>\n                    ${w}\n                </svg>\n            </div>` }; const w = new (window.AudioContext || window.webkitAudioContext); function k(t) { this.audioContext = t } k.prototype.setup = function () { this.gain = this.audioContext.createGain(); this.bandpass = this.audioContext.createBiquadFilter(), this.bandpass.type = "bandpass", this.bandpass.frequency.value = 9e3, this.highpass = this.audioContext.createBiquadFilter(), this.highpass.type = "highpass", this.highpass.frequency.value = 4500, this.lowpass = this.audioContext.createBiquadFilter(), this.lowpass.type = "lowpass", this.lowpass.frequency.value = 2500, this.oscillators = [], [2, 3, 4.16, 5.43, 6.79, 8.21].forEach((t => { const e = this.audioContext.createOscillator(); e.type = "square", e.frequency.value = 40 * t, e.frequency.exponentialRampToValueAtTime(.001, this.audioContext.currentTime + 1), this.oscillators.push(e) })), this.oscillators.forEach((t => t.connect(this.bandpass))), this.bandpass.connect(this.highpass).connect(this.lowpass).connect(this.gain).connect(this.audioContext.destination) }, k.prototype.trigger = function () { this.setup(), this.gain.gain.setValueAtTime(1, this.audioContext.currentTime), this.gain.gain.exponentialRampToValueAtTime(.01, this.audioContext.currentTime + .06), this.oscillators.forEach((t => { t.start(this.audioContext.currentTime + .01), t.stop(this.audioContext.currentTime + .07) })) }; var y = () => { new k(w).trigger() }; var b = function (t, e, n, i, r, a) { for (var s = function (t, e, n, i) { for (var r = 2 * Math.PI, a = [], s = (n - e) / r, o = Math.ceil(s + 1), l = 0; l < o; l++)for (var c = 0; c < t.length; c++) { var h = t[c] + r * l - e - i; a.push(h) } return a }(t, e, n, a), o = n - e, l = r, c = [], h = 0; h < s.length; h++) { var d = s[h] / o; d < 1 && d >= 0 && c.push(d) } var u = function (t, e, n, i, r) { var a = 3 * t, s = 3 * (n - t) - a, o = 1 - a - s, l = 3 * e, c = 3 * (i - e) - l, h = 1 - l - c, d = 1e-5; function u(t) { return ((o * t + s) * t + a) * t } function p(t) { return ((h * t + c) * t + l) * t } function g(t) { return (3 * o * t + 2 * s) * t + a } function $(t) { var e, n, i, r, a, s; for (i = t, s = 0; s < 32; s++) { if (r = p(i) - t, Math.abs(r) < d) return i; if (a = g(i), Math.abs(a) < d) break; i -= r / a } if ((i = t) < (e = 0)) return e; if (i > (n = 1)) return n; for (; e < n;) { if (r = p(i), Math.abs(r - t) < d) return i; t > r ? e = i : n = i, i = .5 * (n - e) + e } return i } const v = []; r.forEach((t => { v.push($(t)) })); const f = []; return v.forEach((t => { f.push(u(t)) })), f }(l[0], l[1], l[2], l[3], c), p = []; for (h = 0; h < u.length; h++) { var g = u[h] * i; p.push(g) } return p }; var I = (t, e = "copy", n = !0) => { document.getElementById(e).value = n ? window.location.href.split("?")[0] + t : t }; window.updateCopyBox = I; const M = {};["spinner", "form", "list", "tada", "tada-text", "remove-button", "remove-name", "reset-wheel", "sound"].forEach((t => { M[r(t)] = document.getElementById(t) })); const z = 2 * Math.PI, B = [[.19, 1, .22, 1], [.19, 1, .22, 1], [.19, 1, .22, 1], [.02, .28, .31, 1], [.24, .98, .32, 1]], A = window.matchMedia("(prefers-reduced-motion: reduce)").matches, T = { maxNumberOfPins: 60, cardinalityOffset: Math.PI / 2, spinnerValues: [], sectorData: [], sound: !1, extraRotations: 3, timingFunction: B[0], spinDuration: 5e3, winningRadian: 0, currentAngle: 0, winner: "", isSpinning: !1 }, C = () => { T.spinnerValues = E(), R(), M.resetWheel.disabled = !0, M.removeButton.disabled = !0, D(T.spinnerValues) }, R = () => { const t = T.spinnerValues.map((t => ({ text: t, size: 1 }))); T.sectorData = o(t); const e = x(T.sectorData); M.spinner.innerHTML = e, M.spinnerInner = document.getElementById("spinner-inner"), M.ticker = document.getElementById("ticker"), M.tickerInner = document.getElementById("ticker-inner") }, E = () => M.list.value.split("\n").filter((t => t.trim())).map((t => t.trim())), S = t => { M.ticker.style.transformOrigin = "50% 1%", M.ticker.style.transitionDuration = ".08s", M.ticker.style.transitionTimingFunction = "ease-in-out", setTimeout((() => { M.ticker.style.transform = "rotate(-20deg)", T.sound && y() }), t), setTimeout((() => { M.ticker.style.transform = "rotate(0)" }), t + 100) }, P = t => { M.tada.classList.add("highlight"), M.tadaText.textContent = t, M.removeName.textContent = t, M.removeButton.disabled = !1, setTimeout(finish, 500), setTimeout((() => { M.tada.classList.remove("highlight") }), 2e3) }, D = t => { const e = t.map((t => encodeURIComponent(t))).join("+"); I("?values=" + e) }, L = () => { M.tadaText.textContent = "", M.removeButton.disabled = !0, M.removeName.textContent = "winner" }; let O = ""; M.form.addEventListener("submit", (i => { i && i.preventDefault(); let r = new FormData(form), a = {}; for (let [t, e] of r.entries()) a[t] = e; T.sound = a.sound || !1, (() => { if (T.isSpinning) return; T.isSpinning = !0, L(), T.spinDuration = A ? 0 : 1e3 * n(5, 7), T.timingFunction = e(B), T.winningRadian = getRandomArbitrary(0.3, 1) * Math.PI * 12, T.extraRotations = n(3, 4), M.spinnerInner.style.transitionTimingFunction = `cubic-bezier(${T.timingFunction.join(",")})`, M.spinnerInner.style.transitionProperty = "transform", M.spinnerInner.style.transitionDuration = T.spinDuration / 1e3 + "s"; const i = T.extraRotations * z, r = T.winningRadian + i, a = t(-r - T.cardinalityOffset), s = T.sectorData.findIndex((t => a >= t.startAngle && a <= t.endAngle)); T.winner = T.spinnerValues[s]; const o = T.sectorData.map((t => t.startAngle)), l = b(o, T.currentAngle, r, T.spinDuration, T.timingFunction, T.cardinalityOffset); M.spinnerInner.style.transform = `rotate(${r}rad) translateZ(0)`, l.forEach((t => { S(t) })), T.currentAngle = t(r), setTimeout((() => { T.isSpinning = !1, M.spinnerInner.style.transitionDuration = "0s", M.spinnerInner.style.transform = `rotate(${T.currentAngle}rad) translateZ(0)`, P(T.winner) }), T.spinDuration) })() })), M.list.addEventListener("input", (t => { (t => { let e = t.target.value; e.length > O.length + 5 && (e = a(e), t.target.value = e), O = e })(t), C() })), M.removeButton.addEventListener("click", (() => { let t = T.spinnerValues.indexOf(T.winner); T.spinnerValues.splice(t, 1), R(), M.resetWheel.disabled = !1, M.removeButton.disabled = !0 })), M.resetWheel.addEventListener("click", C); M.sound.addEventListener("change", (t => { t.target.checked ? (T.sound = !0, y()) : T.sound = !1 })), (() => { const t = i(); t && t.values && (M.list.value = Array.isArray(t.values) ? t.values.join("\n") : [t.values], document.getElementById("show-more").checked = !1) })(), C(); return {} }();
+        </script>
     </div>
 </body>
 </html>
