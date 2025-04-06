@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
             `;
             offersWrapper.appendChild(offerElement);
-            console.log(offerElement);
+            
             idx++;
         }
     });
