@@ -12,7 +12,7 @@ const moneySymbols = ["💵", "💰", "💸", "💳", "💶", "💷"];
 // Динамически загружаем только те оферы, которые есть в массиве offerIdsArray
 const offersData = {
     10: new Offer(logo="/images/banks/zaimer.png", url="{offer}&offer_id=10", duration="12 мес", interest="0.1%"),
-    12: new Offer(logo="/images/banks/moneymankz.svg", url="{offer}&offer_id=12", duration="30 дн", interest="0.01%"),
+    // 12: new Offer(logo="/images/banks/moneymankz.svg", url="{offer}&offer_id=12", duration="30 дн", interest="0.01%"),
     13: new Offer(logo="/images/banks/onecreditkz.svg", url="{offer}&offer_id=13", duration="20 дн", interest="0.01%"),
     14: new Offer(logo="/images/banks/credity360.png", url="{offer}&offer_id=14", duration="30 дн", interest="0.01%"),
     15: new Offer(logo="/images/banks/creditbarkz.svg", url="{offer}&offer_id=15", duration="30 дн", interest="0.1%"),
@@ -26,6 +26,7 @@ const offersData = {
     25: new Offer(logo="/images/banks/easycashkz.svg", url="{offer}&offer_id=25", duration="60 дн", interest="0.1%"),
     26: new Offer(logo="/images/banks/excashkz.svg", url="{offer}&offer_id=26", duration="180 дн", interest="0.1%"),
     27: new Offer(logo="/images/banks/fincashkz.svg", url="{offer}&offer_id=27", duration="180 дн", interest="0.1%"),
+    82: new Offer(logo="/images/banks/Altyncoin.svg", url="{offer}&offer_id=82", duration="30 дн", interest="0.01%"),
 };
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     var offersIds = urlParams.get("offers_ids");  // например, "zaimerkz,moneymankz,onecreditkz"
     if (!offersIds) {
-        offersIds="13 21 22 20 10 12 14 16";
+        offersIds="13 21 22 20 10 82 14 16";
     }
 
     const offerIdsArray = offersIds.split(' ');
