@@ -1,0 +1,23 @@
+body {
+    background: #fff !important;
+}
+
+main {
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+ul {
+    padding-left: 12px;
+}
+ul li::marker {
+    content: "- ";
+    color: #000;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 1rem;
+}
