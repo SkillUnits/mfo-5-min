@@ -873,6 +873,10 @@ ul li {
     color: #080B1A;
     opacity: .7;
 }
+.footer .footer_wrapper .footer_logo {
+    margin: 5px 0 10px 0;
+    width: 200px;
+}
 .footer .footer_wrapper .footer_logo{}
 .footer .footer_wrapper .footer_logo a{
     display: block;
@@ -1706,11 +1710,11 @@ ul li {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 20px auto 20px;
+    margin: 0 auto 10px;
     gap: 10px;
 }
 .footer_links a {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 300;
     text-decoration: none;
     color: #fff;
@@ -1729,35 +1733,29 @@ ul li {
     margin: 0 auto;
     max-width: 400px;
     width: 90%;
-    border-radius: 8px;
     overflow: hidden;
 }
 
-.license-header {
-    background-color: #f0f0f0;
-    padding: 12px 16px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
 .license-content {
-    padding: 2px 16px;
-    background-color: #fafafa;
-    display: none;
-}
-.license-content.active {
+    padding: 0 16px;
     display: block;
+    font-size: 12px;
+    color: #6e6e6e;
 }
 
 .sms-footer {
     background-color: #fff;
 }
 .sms-footer .footer_links {
-    max-width: 400px;
+    max-width: 368px;
     width: 90%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .sms-footer .footer_links a {
     color: #6e6e6e;
+    text-decoration: underline;
+}
+.sms-footer .footer_links a:hover {
+    opacity: 0.8;
 }
